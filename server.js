@@ -7,6 +7,24 @@ const connectDB=require("./config/db");
 const adminRoutes = require("./routes/adminRoutes");
 app.use("/admin",adminRoutes);
 
+const Admin = require("./models/Admin");
+const bcrypt = require("bcryptjs");
+async function seedAdmin() {
+  const admin = await Admin.findOne({
+    email: process.env.ADMIN_EMAIL
+  });
+  if (!admin) {
+    const hash = await bcrypt.hash(
+      process.env.ADMIN_PASSWORD,
+      10
+    );
+    await Admin.create({
+      email: process.env.ADMIN_EMAIL,
+      password: hash
+    });
+console.log("Admin created");}
+}
+
 
 
 const app=express();
