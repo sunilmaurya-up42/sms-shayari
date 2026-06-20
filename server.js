@@ -1,17 +1,11 @@
 require("dotenv").config();
-
-
-
 const express=require("express");
-
-
 const session=require("express-session");
-
-
 const MongoStore=require("connect-mongo");
-
-
 const connectDB=require("./config/db");
+
+const adminRoutes = require("./routes/adminRoutes");
+app.use("/admin",adminRoutes);
 
 
 
