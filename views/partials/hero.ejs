@@ -1,1 +1,399 @@
+<section class="relative overflow-hidden">
 
+    <!-- Background Gradient -->
+    <div class="absolute inset-0">
+
+        <div class="absolute top-0 left-0 w-96 h-96 bg-purple-700/30 rounded-full blur-[120px]"></div>
+
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-pink-600/20 rounded-full blur-[120px]"></div>
+
+    </div>
+
+
+    <div class="relative max-w-7xl mx-auto px-5 py-16 lg:py-24">
+
+
+        <!-- Main Card -->
+
+        <div
+            class="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 lg:p-12">
+
+
+            <!-- Heading -->
+
+            <h1
+                class="text-4xl lg:text-6xl font-bold text-center leading-tight">
+
+
+                <span class="text-purple-400">
+
+                    SMS Shayari
+
+                </span>
+
+                <br>
+
+                Hindi Shayari Collection
+
+
+            </h1>
+
+
+
+            <!-- Description -->
+
+
+            <p
+                class="text-zinc-300 text-center mt-5 max-w-3xl mx-auto">
+
+
+                Love Shayari, Sad Shayari, Dosti Shayari,
+                Deshi Chutkula aur Motivational Shayari
+                ka sabse bada collection.
+
+            </p>
+
+
+
+
+
+            <!-- Search -->
+
+
+            <form
+
+                action="/"
+
+                method="GET"
+
+                class="mt-10 max-w-3xl mx-auto"
+
+            >
+
+
+                <div class="relative">
+
+
+                    <input
+
+                        type="text"
+
+                        name="search"
+
+                        value="<%= searchQuery || '' %>"
+
+                        placeholder="Search Shayari..."
+
+
+                        class="w-full
+
+                        p-5
+
+                        rounded-2xl
+
+                        bg-black/40
+
+                        border border-white/10
+
+                        outline-none
+
+                        focus:border-purple-500"
+
+                    >
+
+
+
+                    <button
+
+
+                        class="absolute
+
+                        top-2
+
+                        right-2
+
+
+                        px-6
+
+                        py-3
+
+
+                        rounded-xl
+
+
+                        bg-purple-700
+
+
+                        hover:bg-purple-600"
+
+                    >
+
+
+                        Search
+
+
+                    </button>
+
+
+
+                </div>
+
+
+            </form>
+
+
+
+
+
+
+
+            <!-- Stats -->
+
+
+
+            <div
+
+                class="grid
+
+                grid-cols-1
+
+                md:grid-cols-3
+
+
+                gap-5
+
+
+                mt-12"
+
+            >
+
+
+
+
+                <div
+
+                    class="bg-black/30
+
+                    border border-white/10
+
+
+                    rounded-2xl
+
+
+                    p-6
+
+                    text-center"
+
+                >
+
+
+                    <h2 class="text-3xl font-bold text-purple-400">
+
+                        <%= totalShayari || 0 %>
+
+                    </h2>
+
+
+                    <p class="mt-2 text-zinc-400">
+
+                        Total Shayari
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+
+                <div
+
+                    class="bg-black/30
+
+                    border border-white/10
+
+
+                    rounded-2xl
+
+
+                    p-6
+
+                    text-center"
+
+                >
+
+
+                    <h2 class="text-3xl font-bold text-purple-400">
+
+                        <%= categories.length || 0 %>
+
+                    </h2>
+
+
+                    <p class="mt-2 text-zinc-400">
+
+                        Categories
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <div
+
+                    class="bg-black/30
+
+                    border border-white/10
+
+
+                    rounded-2xl
+
+
+                    p-6
+
+                    text-center"
+
+                >
+
+
+                    <h2 class="text-3xl font-bold text-purple-400">
+
+                        24×7
+
+                    </h2>
+
+
+                    <p class="mt-2 text-zinc-400">
+
+                        Available
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Buttons -->
+
+
+
+
+            <div
+
+                class="flex
+
+                flex-wrap
+
+
+                justify-center
+
+
+                gap-4
+
+
+                mt-12"
+
+            >
+
+
+
+                <a
+
+
+                    href="/category/love-shayari"
+
+
+                    class="px-6
+
+
+                    py-3
+
+
+                    rounded-xl
+
+
+                    bg-purple-700
+
+
+                    hover:bg-purple-600"
+
+                >
+
+                    Love Shayari
+
+
+                </a>
+
+
+
+
+
+
+                <a
+
+
+                    href="/category/sad-shayari"
+
+
+                    class="px-6
+
+
+                    py-3
+
+
+                    rounded-xl
+
+
+                    bg-black/40
+
+
+                    border border-white/10"
+
+                >
+
+                    Sad Shayari
+
+
+                </a>
+
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</section>
