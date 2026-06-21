@@ -1,13 +1,30 @@
-module.exports = (req, res, next) => {
+module.exports = (
 
-    if (!req.session.admin) {
+    req,
 
-        req.session.message = "Please login first";
+    res,
 
-        return res.redirect("/admin/login");
+    next
+
+) => {
+
+    if (
+
+        req.session &&
+
+        req.session.admin
+
+    ) {
+
+        return next();
 
     }
 
-    next();
+
+    return res.redirect(
+
+        "/admin/login"
+
+    );
 
 };
