@@ -1,1 +1,128 @@
+<%
+const prevPage = currentPage - 1;
+const nextPage = currentPage + 1;
+%>
 
+<% if(totalPages > 1){ %>
+
+<div class="flex flex-wrap items-center justify-center gap-3 mt-10">
+
+    <!-- Previous -->
+
+    <% if(currentPage > 1){ %>
+
+        <a
+
+            href="?page=<%= prevPage %><%= searchQuery ? '&search='+searchQuery : '' %>"
+
+            class="px-4 py-3
+
+            rounded-xl
+
+            bg-black/40
+
+            border border-white/10
+
+            hover:bg-purple-700"
+
+        >
+
+            ← Previous
+
+        </a>
+
+    <% } %>
+
+
+
+
+
+    <!-- Numbers -->
+
+
+    <% for(let i=1;i<=totalPages;i++){ %>
+
+
+        <% if(i===currentPage){ %>
+
+            <span
+
+                class="px-5 py-3
+
+                rounded-xl
+
+                bg-purple-700"
+
+            >
+
+                <%= i %>
+
+            </span>
+
+
+        <% } else { %>
+
+
+            <a
+
+                href="?page=<%= i %><%= searchQuery ? '&search='+searchQuery : '' %>"
+
+                class="px-5 py-3
+
+                rounded-xl
+
+                bg-black/40
+
+                border border-white/10
+
+                hover:bg-purple-700"
+
+            >
+
+                <%= i %>
+
+            </a>
+
+
+        <% } %>
+
+
+    <% } %>
+
+
+
+
+
+
+    <!-- Next -->
+
+
+    <% if(currentPage < totalPages){ %>
+
+        <a
+
+            href="?page=<%= nextPage %><%= searchQuery ? '&search='+searchQuery : '' %>"
+
+            class="px-4 py-3
+
+            rounded-xl
+
+            bg-black/40
+
+            border border-white/10
+
+            hover:bg-purple-700"
+
+        >
+
+            Next →
+
+        </a>
+
+    <% } %>
+
+
+
+</div>
+
+<% } %>
