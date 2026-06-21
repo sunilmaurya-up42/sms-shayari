@@ -1,1 +1,101 @@
+<section class="max-w-7xl mx-auto">
 
+    <div class="flex flex-wrap gap-3 justify-center">
+
+
+        <!-- All Category -->
+
+        <a
+
+            href="/"
+
+            class="<%= !activeCategory
+            ? 'bg-purple-700 text-white'
+            : 'bg-black/40 text-zinc-300 border border-white/10'
+            %>
+
+            px-5
+            py-3
+
+            rounded-full
+
+            backdrop-blur-xl
+
+            transition
+
+            hover:bg-purple-700"
+
+        >
+
+            All
+
+        </a>
+
+
+
+        <% categories.forEach(category => { %>
+
+
+
+            <a
+
+                href="/category/<%= category.slug %>"
+
+
+                class="
+
+                <%=
+
+                activeCategory === category.slug
+
+
+                ?
+
+                'bg-purple-700 text-white'
+
+
+                :
+
+                'bg-black/40 text-zinc-300 border border-white/10'
+
+
+                %>
+
+
+
+                px-5
+
+                py-3
+
+
+                rounded-full
+
+
+                backdrop-blur-xl
+
+
+                transition
+
+
+                hover:bg-purple-700
+
+                hover:text-white"
+
+            >
+
+
+                <%= category.name %>
+
+
+
+            </a>
+
+
+
+        <% }) %>
+
+
+
+    </div>
+
+</section>
