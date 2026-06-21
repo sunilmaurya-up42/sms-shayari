@@ -1,0 +1,139 @@
+<%- include('../partials/header') %>
+
+<div class="max-w-5xl mx-auto">
+
+<h1 class="text-3xl font-bold mb-8">
+
+Add Shayari
+
+</h1>
+
+
+<form method="POST"
+
+action="/admin/shayari/add">
+
+
+
+<input
+
+name="title"
+
+placeholder="Title"
+
+required
+
+class="w-full p-3 rounded-xl bg-zinc-900 mb-4">
+
+
+
+
+<select
+
+name="category"
+
+class="w-full p-3 rounded-xl bg-zinc-900 mb-4">
+
+
+<% categories.forEach(cat=>{ %>
+
+<option value="<%=cat._id%>">
+
+<%=cat.name%>
+
+</option>
+
+<% }) %>
+
+
+</select>
+
+
+
+
+<textarea
+
+name="content"
+
+rows="10"
+
+placeholder="Write Shayari..."
+
+required
+
+class="w-full p-3 rounded-xl bg-zinc-900 mb-4">
+
+
+</textarea>
+
+
+
+
+<input
+
+name="seoTitle"
+
+placeholder="SEO Title"
+
+class="w-full p-3 rounded-xl bg-zinc-900 mb-4">
+
+
+
+
+<textarea
+
+name="seoDescription"
+
+rows="3"
+
+placeholder="SEO Description"
+
+class="w-full p-3 rounded-xl bg-zinc-900 mb-4">
+
+</textarea>
+
+
+
+
+<select
+
+name="published"
+
+class="w-full p-3 rounded-xl bg-zinc-900 mb-4">
+
+
+<option value="true">
+
+Publish
+
+</option>
+
+
+<option value="false">
+
+Draft
+
+</option>
+
+
+</select>
+
+
+
+
+<button
+
+class="bg-purple-700 px-5 py-3 rounded-xl">
+
+
+Save Shayari
+
+
+</button>
+
+
+
+</form>
+
+
+</div>
