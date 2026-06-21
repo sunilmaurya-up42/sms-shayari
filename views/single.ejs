@@ -78,8 +78,7 @@ p-8"
 
 <a
 
-href="/category/<%= post.category.slug %>"
-
+href="/category/<%= post.category?.slug || '' %>"
 class="inline-block
 
 bg-purple-700
@@ -92,7 +91,7 @@ rounded-full"
 
 >
 
-<%= post.category.name %>
+<%= post.category?.name || 'Uncategorized' %>
 
 </a>
 
@@ -237,8 +236,7 @@ WhatsApp
 
 target="_blank"
 
-href="https://twitter.com/intent/tweet?text=<%= encodeURIComponent(post.content) %>"
-
+href="https://x.com/intent/post?text=<%= encodeURIComponent(post.content) %>"
 class="bg-zinc-800
 
 px-5
@@ -292,7 +290,7 @@ Print
 
 
 <div
-
+(comments || []).forEach(
 class="mt-10
 
 bg-white/5
