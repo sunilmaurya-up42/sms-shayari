@@ -934,3 +934,262 @@ exports.deleteCategory = async (
     }
 
 };
+// ==========================
+// SEO Page
+// ==========================
+
+exports.seoPage = async (req, res) => {
+
+    try {
+
+        let settings = await Settings.findOne();
+
+
+        if (!settings) {
+
+            settings = await Settings.create({});
+
+        }
+
+
+        res.render(
+
+            "admin/seo",
+
+            {
+
+                settings
+
+            }
+
+        );
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+    }
+
+};
+
+
+
+
+// ==========================
+// Save SEO
+// ==========================
+
+exports.saveSeo = async (req, res) => {
+
+    try {
+
+        let settings = await Settings.findOne();
+
+
+        if (!settings) {
+
+            settings = new Settings();
+
+        }
+
+
+
+        settings.metaTitle =
+
+            req.body.metaTitle;
+
+
+
+        settings.metaDescription =
+
+            req.body.metaDescription;
+
+
+
+        settings.metaKeywords =
+
+            req.body.metaKeywords;
+
+
+
+        await settings.save();
+
+
+
+        res.redirect(
+
+            "/admin/seo"
+
+        );
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+    }
+
+};
+
+// ==========================================
+// Settings Page
+// ==========================================
+
+exports.settingsPage = async (req, res) => {
+
+    try {
+
+        let settings = await Settings.findOne();
+
+
+        if (!settings) {
+
+            settings = await Settings.create({});
+
+        }
+
+
+        res.render(
+
+            "admin/settings",
+
+            {
+
+                settings
+
+            }
+
+        );
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        res.redirect(
+
+            "/admin/dashboard"
+
+        );
+
+    }
+
+};
+
+
+
+
+// ==========================================
+// Save Settings
+// ==========================================
+
+exports.saveSettings = async (req, res) => {
+
+    try {
+
+        let settings = await Settings.findOne();
+
+
+        if (!settings) {
+
+            settings = new Settings();
+
+        }
+
+
+
+        settings.siteName =
+
+            req.body.siteName || "";
+
+
+        settings.siteDescription =
+
+            req.body.siteDescription || "";
+
+
+        settings.logo =
+
+            req.body.logo || "";
+
+
+        settings.phone =
+
+            req.body.phone || "";
+
+
+        settings.whatsapp =
+
+            req.body.whatsapp || "";
+
+
+        settings.email =
+
+            req.body.email || "";
+
+
+        settings.address =
+
+            req.body.address || "";
+
+
+        settings.analyticsId =
+
+            req.body.analyticsId || "";
+
+
+        settings.adsenseCode =
+
+            req.body.adsenseCode || "";
+
+
+        settings.facebookUrl =
+
+            req.body.facebookUrl || "";
+
+
+        settings.xUrl =
+
+            req.body.xUrl || "";
+
+
+        settings.instagramUrl =
+
+            req.body.instagramUrl || "";
+
+
+        settings.copyrightText =
+
+            req.body.copyrightText || "";
+
+
+
+        await settings.save();
+
+
+
+        res.redirect(
+
+            "/admin/settings"
+
+        );
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        res.redirect(
+
+            "/admin/settings"
+
+        );
+
+    }
+
+};
