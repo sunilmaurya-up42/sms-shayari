@@ -1,33 +1,450 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
 
-<title>Dashboard</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Dashboard | SMS Shayari
+
+</title>
+
+
+<link rel="stylesheet"
+href="/css/output.css">
+
 
 </head>
 
-<body>
+
+
+<body class="bg-black text-white">
+
+
+<div class="flex">
+
+
+<%- include('../partials/sidebar') %>
 
 
 
-<h1>
+<div class="flex-1 ml-64">
 
-Welcome Admin
+
+<%- include('../partials/header') %>
+
+
+
+<div class="p-6">
+
+
+
+<h1
+
+class="text-3xl font-bold mb-8"
+
+>
+
+Dashboard
 
 </h1>
 
 
 
-<a href="/admin/logout">
 
-Logout
+<div
+
+class="grid
+
+grid-cols-1
+
+md:grid-cols-2
+
+lg:grid-cols-5
+
+gap-6"
+
+>
+
+
+
+
+<div
+
+class="bg-white/10
+
+backdrop-blur-lg
+
+rounded-2xl
+
+p-6
+
+border border-white/10"
+
+>
+
+
+<p class="text-zinc-400">
+
+Total Shayari
+
+</p>
+
+
+<h2
+
+class="text-4xl font-bold mt-3"
+
+>
+
+<%= totalShayari %>
+
+</h2>
+
+
+
+</div>
+
+
+
+
+
+
+<div
+
+class="bg-white/10
+
+backdrop-blur-lg
+
+rounded-2xl
+
+p-6
+
+border border-white/10"
+
+>
+
+
+<p class="text-zinc-400">
+
+Categories
+
+</p>
+
+
+
+<h2
+
+class="text-4xl font-bold mt-3"
+
+>
+
+<%= totalCategories %>
+
+</h2>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div
+
+class="bg-white/10
+
+backdrop-blur-lg
+
+rounded-2xl
+
+p-6
+
+border border-white/10"
+
+>
+
+
+<p class="text-zinc-400">
+
+Comments
+
+</p>
+
+
+
+<h2
+
+class="text-4xl font-bold mt-3"
+
+>
+
+<%= totalComments %>
+
+</h2>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div
+
+class="bg-white/10
+
+backdrop-blur-lg
+
+rounded-2xl
+
+p-6
+
+border border-white/10"
+
+>
+
+
+
+<p class="text-zinc-400">
+
+Pending
+
+</p>
+
+
+
+<h2
+
+class="text-4xl font-bold mt-3 text-yellow-400"
+
+>
+
+<%= pendingComments %>
+
+</h2>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div
+
+class="bg-white/10
+
+backdrop-blur-lg
+
+rounded-2xl
+
+p-6
+
+border border-white/10"
+
+>
+
+
+
+<p class="text-zinc-400">
+
+Views
+
+</p>
+
+
+
+<h2
+
+class="text-4xl font-bold mt-3"
+
+>
+
+<%= totalViews %>
+
+</h2>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+<div class="mt-12">
+
+
+
+<h2
+
+class="text-2xl font-bold mb-6"
+
+>
+
+Quick Actions
+
+</h2>
+
+
+
+
+<div
+
+class="flex flex-wrap gap-4"
+
+>
+
+
+
+
+<a
+
+href="/admin/shayari"
+
+
+class="px-6 py-3
+
+rounded-xl
+
+bg-purple-700
+
+hover:bg-purple-600"
+
+>
+
+
+Manage Shayari
+
 
 </a>
 
 
 
+
+
+
+<a
+
+href="/admin/categories"
+
+
+class="px-6 py-3
+
+rounded-xl
+
+bg-purple-700
+
+hover:bg-purple-600"
+
+>
+
+
+Categories
+
+
+</a>
+
+
+
+
+
+
+<a
+
+href="/admin/comments"
+
+
+class="px-6 py-3
+
+rounded-xl
+
+bg-purple-700
+
+hover:bg-purple-600"
+
+>
+
+
+Comments
+
+
+</a>
+
+
+
+
+
+
+<a
+
+href="/admin/settings"
+
+
+class="px-6 py-3
+
+rounded-xl
+
+bg-purple-700
+
+hover:bg-purple-600"
+
+>
+
+
+Settings
+
+
+</a>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
 </body>
+
 
 </html>
