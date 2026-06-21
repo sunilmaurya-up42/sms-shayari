@@ -1,48 +1,95 @@
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
+
+const commentSchema = new mongoose.Schema(
+
+{
+
+    postId: {
+
+        type: mongoose.Schema.Types.ObjectId,
+
+        ref: "Shayari",
+
+        required: true
+
+    },
 
 
 
-const CommentSchema=new mongoose.Schema({
+    name: {
+
+        type: String,
+
+        required: true,
+
+        trim: true
+
+    },
 
 
 
-name:String,
+    email: {
+
+        type: String,
+
+        trim: true,
+
+        lowercase: true,
+
+        default: ""
+
+    },
 
 
-email:String,
+
+    comment: {
+
+        type: String,
+
+        required: true,
+
+        trim: true
+
+    },
 
 
-comment:String,
+
+    adminReply: {
+
+        type: String,
+
+        default: ""
+
+    },
 
 
 
-approved:{
+    approved: {
 
+        type: Boolean,
 
-type:Boolean,
+        default: false
 
-
-default:false
-
+    }
 
 },
 
+{
 
-
-reply:{
-
-
-type:String,
-
-
-default:""
-
+    timestamps: true
 
 }
 
+);
 
 
-});
 
+module.exports = mongoose.models.Comment ||
 
-module.exports=mongoose.model("Comment",CommentSchema);
+mongoose.model(
+
+"Comment",
+
+commentSchema
+
+);
