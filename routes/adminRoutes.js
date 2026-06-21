@@ -53,13 +53,11 @@ router.get(
     adminController.shayariPage
 );
 
-
 router.post(
     "/shayari/add",
     auth,
     adminController.addShayari
 );
-
 
 router.post(
     "/shayari/update/:id",
@@ -67,13 +65,11 @@ router.post(
     adminController.updateShayari
 );
 
-
-router.get(
+router.post(
     "/shayari/delete/:id",
     auth,
     adminController.deleteShayari
 );
-
 
 
 
@@ -87,20 +83,23 @@ router.get(
     adminController.categoriesPage
 );
 
-
 router.post(
     "/categories/add",
     auth,
     adminController.addCategory
 );
 
+router.post(
+    "/categories/update/:id",
+    auth,
+    adminController.updateCategory
+);
 
-router.get(
+router.post(
     "/categories/delete/:id",
     auth,
     adminController.deleteCategory
 );
-
 
 
 
@@ -114,13 +113,11 @@ router.get(
     adminController.commentsPage
 );
 
-
-router.get(
+router.post(
     "/comments/approve/:id",
     auth,
     adminController.approveComment
 );
-
 
 router.post(
     "/comments/reply/:id",
@@ -128,6 +125,11 @@ router.post(
     adminController.replyComment
 );
 
+router.post(
+    "/comments/delete/:id",
+    auth,
+    adminController.deleteComment
+);
 
 
 
@@ -141,13 +143,11 @@ router.get(
     adminController.seoPage
 );
 
-
 router.post(
     "/seo",
     auth,
     adminController.saveSeo
 );
-
 
 
 
@@ -160,7 +160,6 @@ router.get(
     auth,
     adminController.settingsPage
 );
-
 
 router.post(
     "/settings",
