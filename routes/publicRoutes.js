@@ -1,4 +1,5 @@
 const express = require("express");
+
 const router = express.Router();
 
 const shayariController = require(
@@ -6,94 +7,106 @@ const shayariController = require(
 );
 
 
-/* =========================
-        Home Page
-========================= */
+
+// =========================
+// Home
+// =========================
 
 router.get(
+
     "/",
+
     shayariController.homePage
+
 );
 
 
 
-/* =========================
-        Single Shayari
-========================= */
+
+// =========================
+// Single Shayari
+// =========================
 
 router.get(
+
     "/post/:slug",
+
     shayariController.singlePage
+
 );
 
 
 
-/* =========================
-        Category
-========================= */
+
+// =========================
+// Category
+// =========================
 
 router.get(
+
     "/category/:slug",
+
     shayariController.categoryPage
+
 );
 
 
 
-/* =========================
-        Search
-========================= */
 
-router.get(
-    "/search",
-    shayariController.searchPage
-);
-
-
-
-/* =========================
-        Comments
-========================= */
+// =========================
+// Comment
+// =========================
 
 router.post(
+
     "/comment/:id",
+
     shayariController.addComment
+
 );
 
 
 
 
-/* =========================
-        Static Pages
-========================= */
+// =========================
+// Static Pages
+// =========================
 
 router.get(
-    "/about-us",
+
+    "/about",
+
     shayariController.aboutPage
+
 );
 
 
 router.get(
-    "/contact-us",
+
+    "/contact",
+
     shayariController.contactPage
+
 );
 
 
 router.get(
+
     "/privacy-policy",
-    shayariController.privacyPage
+
+    shayariController.privacyPolicyPage
+
 );
 
 
 router.get(
+
     "/disclaimer",
+
     shayariController.disclaimerPage
+
 );
 
-
-router.get(
-    "/terms-and-conditions",
-    shayariController.termsPage
-);
 
 
 
