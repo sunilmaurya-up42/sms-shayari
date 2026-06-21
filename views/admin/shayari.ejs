@@ -1,46 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Manage Shayari | SMS Shayari</title>
+
+<link rel="stylesheet" href="/css/output.css">
+
+</head>
+
+
+<body class="bg-black text-white">
+
+<div class="flex">
+
+
+<!-- Sidebar -->
+<%- include('../partials/sidebar') %>
+
+
+<div class="flex-1 ml-64">
+
+
+<!-- Header -->
+<%- include('../partials/header') %>
+
+
+
+<div class="p-6">
+
+
+
+<div class="flex justify-between items-center mb-8">
+
+
 <h1 class="text-3xl font-bold">
 
-All Shayari
+Manage Shayari
 
 </h1>
 
 
 
-<a
 
-href="/admin/shayari/add"
-
-class="bg-purple-700 px-4 py-2 rounded-lg">
-
-Add New
-
-</a>
+<button
 
 
+onclick="openAddModal()"
 
-<table class="w-full mt-6">
+
+class="px-5 py-3
+
+bg-purple-700
+
+rounded-xl
+
+hover:bg-purple-600"
+
+>
 
 
-<tr>
++ Add Shayari
 
-<th>Title</th>
 
-<th>Category</th>
+</button>
 
-<th>Action</th>
+
+
+</div>
+
+
+
+
+
+
+<form
+
+action="/admin/shayari"
+
+method="GET"
+
+class="mb-8"
+
+>
+
+
+
+<input
+
+
+type="text"
+
+name="search"
+
+value="<%= searchQuery %>"
+
+
+placeholder="Search title..."
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+
+bg-white/10
+
+backdrop-blur-xl
+
+
+border
+
+border-white/10
+
+
+outline-none"
+
+
+>
+
+
+
+</form>
+
+
+
+
+
+
+<div
+
+
+class="overflow-x-auto
+
+
+bg-white/10
+
+
+backdrop-blur-xl
+
+
+rounded-3xl
+
+
+border border-white/10"
+
+>
+
+
+
+<table
+
+class="w-full"
+
+>
+
+
+<thead>
+
+
+<tr
+
+
+class="border-b
+
+border-white/10"
+
+>
+
+
+<th class="p-4">
+
+<input type="checkbox">
+
+</th>
+
+
+
+<th class="p-4">
+
+Title
+
+</th>
+
+
+<th class="p-4">
+
+Category
+
+</th>
+
+
+
+<th class="p-4">
+
+Views
+
+</th>
+
+
+
+<th class="p-4">
+
+Likes
+
+</th>
+
+
+
+<th class="p-4">
+
+Comments
+
+</th>
+
+
+
+<th class="p-4">
+
+Status
+
+</th>
+
+
+
+<th class="p-4">
+
+Created
+
+</th>
+
+
+
+<th class="p-4">
+
+Actions
+
+</th>
+
+
 
 </tr>
 
 
-
-<% shayari.forEach(item=>{ %>
-
-
-<tr>
+</thead>
 
 
 
-<td>
+
+<tbody>
+
+
+
+<%
+
+shayariList.forEach(
+
+(item)=>{
+
+%>
+
+
+
+
+<tr
+
+
+class="border-b
+
+border-white/5"
+
+>
+
+
+
+
+<td class="p-4">
+
+<input type="checkbox">
+
+</td>
+
+
+
+
+<td class="p-4">
 
 <%= item.title %>
 
@@ -49,7 +298,7 @@ Add New
 
 
 
-<td>
+<td class="p-4">
 
 <%= item.category.name %>
 
@@ -58,28 +307,108 @@ Add New
 
 
 
-<td>
+<td class="p-4">
 
+<%= item.views %>
 
-
-<a
-
-href="/admin/shayari/edit/<%=item._id%>">
-
-Edit
-
-</a>
+</td>
 
 
 
 
-<a
+<td class="p-4">
 
-href="/admin/shayari/delete/<%=item._id%>">
+<%= item.likes %>
 
-Delete
+</td>
 
-</a>
+
+
+
+<td class="p-4">
+
+<%= item.commentsCount %>
+
+</td>
+
+
+
+
+<td class="p-4">
+
+
+<%
+
+
+if(item.published){
+
+%>
+
+
+<span
+
+
+class="px-3
+
+py-1
+
+rounded-full
+
+
+bg-green-500/20
+
+text-green-400"
+
+>
+
+
+Published
+
+
+</span>
+
+
+
+<%
+
+}
+
+else{
+
+%>
+
+
+
+<span
+
+
+class="px-3
+
+py-1
+
+rounded-full
+
+
+bg-red-500/20
+
+text-red-400"
+
+>
+
+
+Draft
+
+
+</span>
+
+
+
+<%
+
+}
+
+%>
+
 
 
 
@@ -87,11 +416,309 @@ Delete
 
 
 
+
+<td class="p-4">
+
+
+<%=
+
+
+new Date(
+
+item.createdAt
+
+)
+
+.toLocaleDateString()
+
+
+%>
+
+
+
+</td>
+
+
+
+
+
+<td class="p-4">
+
+
+
+<button
+
+
+onclick="openEditModal(
+
+'<%= item._id %>'
+
+)"
+
+
+class="px-4 py-2
+
+bg-yellow-500
+
+rounded-lg"
+
+>
+
+
+Edit
+
+
+</button>
+
+
+
+
+
+
+<button
+
+
+onclick="openDeleteModal(
+
+'<%= item._id %>'
+
+)"
+
+
+class="ml-2
+
+px-4 py-2
+
+
+bg-red-600
+
+
+rounded-lg"
+
+>
+
+
+Delete
+
+
+</button>
+
+
+
+
+
+</td>
+
+
+
+
 </tr>
 
 
-<% }) %>
 
+<%
+
+}
+
+)
+
+%>
+
+
+
+
+</tbody>
 
 
 </table>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div
+
+
+class="flex
+
+justify-center
+
+gap-3
+
+
+mt-8"
+
+>
+
+
+
+<%
+
+for(
+
+let i=1;
+
+i<=totalPages;
+
+i++
+
+){
+
+%>
+
+
+
+
+<a
+
+
+href="/admin/shayari?page=<%=i%>"
+
+
+class="px-4 py-2
+
+
+rounded-lg
+
+
+bg-purple-700"
+
+
+>
+
+
+<%=i%>
+
+
+
+</a>
+
+
+
+
+<%
+
+}
+
+%>
+
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+<!-- Modals -->
+
+
+<%- include("./partials/add-modal") %>
+
+<%- include("./partials/edit-modal") %>
+
+<%- include("./partials/delete-modal") %>
+
+
+
+
+
+<script>
+
+
+
+function openAddModal(){
+
+document
+
+.getElementById(
+
+'addModal'
+
+)
+
+.classList
+
+.remove(
+
+'hidden'
+
+);
+
+}
+
+
+
+
+function openEditModal(id){
+
+document
+
+.getElementById(
+
+'editModal'
+
+)
+
+.classList
+
+.remove(
+
+'hidden'
+
+);
+
+}
+
+
+
+
+function openDeleteModal(id){
+
+document
+
+.getElementById(
+
+'deleteModal'
+
+)
+
+.classList
+
+.remove(
+
+'hidden'
+
+);
+
+}
+
+
+
+</script>
+
+
+
+
+</div>
+
+</div>
+
+
+</body>
+
+</html>
