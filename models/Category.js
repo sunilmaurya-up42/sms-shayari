@@ -1,39 +1,67 @@
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
 
+const categorySchema = new mongoose.Schema(
 
+{
+    name: {
 
-const CategorySchema=new mongoose.Schema({
+        type: String,
 
+        required: true,
 
+        unique: true,
 
-name:{
+        trim: true
 
+    },
 
-type:String,
+    slug: {
 
-required:true
+        type: String,
 
+        required: true,
+
+        unique: true,
+
+        lowercase: true,
+
+        trim: true
+
+    },
+
+    description: {
+
+        type: String,
+
+        default: ""
+
+    },
+
+    createdAt: {
+
+        type: Date,
+
+        default: Date.now
+
+    }
 
 },
 
+{
 
-
-slug:{
-
-
-type:String,
-
-required:true,
-
-unique:true
-
+timestamps: true
 
 }
 
+);
 
 
-});
+module.exports = mongoose.models.Category ||
 
+mongoose.model(
 
+"Category",
 
-module.exports=mongoose.model("Category",CategorySchema);
+categorySchema
+
+);
