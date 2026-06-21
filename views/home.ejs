@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= settings?.siteTitle || "SMS Shayari" %></title>
+
+    <!-- SEO -->
+    <meta name="description" content="<%= settings?.metaDescription || '' %>">
+    <meta name="keywords" content="<%= settings?.metaKeywords || '' %>">
+
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="/css/output.css">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="<%= settings?.siteTitle %>">
+    <meta property="og:description" content="<%= settings?.metaDescription %>">
+
+</head>
+
+<body class="bg-black text-white">
+
+<!-- HEADER -->
+<%- include('./partials/header') %>
+
+
+<!-- MAIN CONTAINER -->
+<main class="min-h-screen">
+
+    <!-- HERO SECTION -->
+    <section>
+        <%- include('./partials/hero') %>
+    </section>
+
+    
+    <!-- CATEGORY PILLS -->
+    <section class="px-4 py-6">
+        <%- include('./partials/category-pills') %>
+    </section>
+
+
+    <!-- MAIN CONTENT AREA -->
+    <section class="px-4 lg:px-10">
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+            <!-- LEFT CONTENT -->
+            <div class="lg:col-span-3">
+
+                <!-- Shayari List -->
+                <div class="space-y-4">
+
+                    <% shayariList.forEach(item => { %>
+                        <%- include('./partials/shayari-card', { item }) %>
+                    <% }) %>
+
+                </div>
+
+                <!-- PAGINATION -->
+                <div class="mt-10">
+                    <%- include('./partials/pagination') %>
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDEBAR -->
+            <aside class="hidden lg:block">
+
+                <%- include('./partials/adsense') %>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<%- include('./partials/footer') %>
+
+</body>
+</html>
