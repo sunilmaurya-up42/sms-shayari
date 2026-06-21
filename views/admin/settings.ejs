@@ -1,1 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Settings | SMS Shayari
+
+</title>
+
+<link rel="stylesheet" href="/css/output.css">
+
+</head>
+
+
+<body class="bg-black text-white">
+
+
+<div class="flex">
+
+
+<%- include('../partials/sidebar') %>
+
+
+
+<div class="flex-1 ml-64">
+
+
+<%- include('../partials/header') %>
+
+
+
+<div class="p-6">
+
+
+<h1 class="text-3xl font-bold mb-8">
+
+Website Settings
+
+</h1>
+
+
+
+
+<div
+
+class="bg-white/10
+
+backdrop-blur-xl
+
+rounded-3xl
+
+border border-white/10
+
+p-6"
+
+>
+
+
+
+<form
+
+action="/admin/settings"
+
+method="POST"
+
+enctype="multipart/form-data"
+
+class="space-y-6"
+
+>
+
+
+
+
+<!-- Site Name -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Site Name
+
+</label>
+
+
+<input
+
+type="text"
+
+name="siteName"
+
+value="<%= settings.siteName || 'SMS Shayari' %>"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+<!-- Text Logo -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Text Logo
+
+</label>
+
+
+<input
+
+type="text"
+
+name="textLogo"
+
+value="<%= settings.textLogo || 'SMS Shayari' %>"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Logo Upload -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Logo Image
+
+</label>
+
+
+<input
+
+type="file"
+
+name="logo"
+
+
+accept="image/*"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+<!-- Mobile -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Mobile Number
+
+</label>
+
+
+<input
+
+type="text"
+
+name="mobile"
+
+value="<%= settings.mobile || '8887728576' %>"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- WhatsApp -->
+
+
+<div>
+
+<label class="block mb-2">
+
+WhatsApp Number
+
+</label>
+
+
+<input
+
+type="text"
+
+name="whatsapp"
+
+value="<%= settings.whatsapp || '8887728576' %>"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Email -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Email
+
+</label>
+
+
+<input
+
+type="email"
+
+name="email"
+
+value="<%= settings.email || 'sunilmauryasurila@gmail.com' %>"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Copyright -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Copyright Text
+
+</label>
+
+
+<input
+
+type="text"
+
+name="copyright"
+
+
+value="<%= settings.copyright || '© SMS Shayari' %>"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Dark Mode -->
+
+
+<div class="flex items-center gap-3">
+
+<label>
+
+Enable Dark Mode
+
+</label>
+
+
+
+<input
+
+type="checkbox"
+
+name="darkMode"
+
+
+<%= settings.darkMode ? 'checked' : '' %>
+
+
+class="w-5 h-5"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Save -->
+
+
+<button
+
+
+class="px-6
+
+py-3
+
+
+bg-purple-700
+
+
+rounded-xl
+
+
+hover:bg-purple-600"
+
+>
+
+Save Settings
+
+</button>
+
+
+
+
+</form>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</body>
+
+</html>
