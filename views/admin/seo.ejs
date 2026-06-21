@@ -1,1 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+SEO Settings | SMS Shayari
+
+</title>
+
+<link rel="stylesheet"
+href="/css/output.css">
+
+</head>
+
+
+<body class="bg-black text-white">
+
+
+<div class="flex">
+
+
+<%- include('../partials/sidebar') %>
+
+
+
+<div class="flex-1 ml-64">
+
+
+<%- include('../partials/header') %>
+
+
+
+
+<div class="p-6">
+
+
+<h1
+
+class="text-3xl font-bold mb-8"
+
+>
+
+SEO Settings
+
+</h1>
+
+
+
+
+
+<div
+
+class="bg-white/10
+
+backdrop-blur-xl
+
+rounded-3xl
+
+border border-white/10
+
+p-6"
+
+>
+
+
+
+
+<form
+
+action="/admin/seo"
+
+method="POST"
+
+class="space-y-6"
+
+>
+
+
+
+<!-- Site Title -->
+
+<div>
+
+<label class="block mb-2">
+
+Site Title
+
+</label>
+
+
+<input
+
+type="text"
+
+name="siteTitle"
+
+value="<%=settings.siteTitle || ''%>"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+<!-- Description -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Meta Description
+
+</label>
+
+
+<textarea
+
+name="metaDescription"
+
+rows="4"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+><%=settings.metaDescription || ''%></textarea>
+
+</div>
+
+
+
+
+
+
+
+<!-- Keywords -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Meta Keywords
+
+</label>
+
+
+<input
+
+type="text"
+
+name="metaKeywords"
+
+value="<%=settings.metaKeywords || ''%>"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Canonical -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Canonical URL
+
+</label>
+
+
+<input
+
+type="text"
+
+name="canonical"
+
+value="<%=settings.canonical || ''%>"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Robots -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Robots
+
+</label>
+
+
+
+<select
+
+name="robots"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+
+<option value="index,follow">
+
+Index, Follow
+
+</option>
+
+
+
+<option value="noindex,nofollow">
+
+Noindex, Nofollow
+
+</option>
+
+
+
+</select>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Analytics -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Google Analytics ID
+
+</label>
+
+
+<input
+
+type="text"
+
+name="analytics"
+
+
+value="<%=settings.analytics || ''%>"
+
+
+placeholder="G-XXXXXXXX"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Search Console -->
+
+
+<div>
+
+<label class="block mb-2">
+
+Google Verification
+
+</label>
+
+
+<input
+
+type="text"
+
+name="verification"
+
+value="<%=settings.verification || ''%>"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- Adsense -->
+
+
+<div>
+
+<label class="block mb-2">
+
+AdSense Publisher ID
+
+</label>
+
+
+<input
+
+type="text"
+
+name="adsense"
+
+value="<%=settings.adsense || ''%>"
+
+
+placeholder="ca-pub-xxxxxxxxxx"
+
+
+class="w-full
+
+p-4
+
+rounded-xl
+
+bg-black/40
+
+border border-white/10"
+
+>
+
+</div>
+
+
+
+
+
+
+
+
+<button
+
+
+class="px-6
+
+py-3
+
+
+bg-purple-700
+
+
+rounded-xl
+
+
+hover:bg-purple-600"
+
+>
+
+Save Settings
+
+</button>
+
+
+
+
+</form>
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+</body>
+
+</html>
