@@ -81,5 +81,16 @@ adminController.addShayari
 
 );
 
+// Shayari List
+
+router.get(
+
+"/shayari",
+
+auth,
+
+adminController.shayariPage
+
+);
 
 module.exports = router;
