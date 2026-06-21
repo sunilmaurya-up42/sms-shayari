@@ -2,86 +2,237 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title><%= settings?.siteTitle || "SMS Shayari" %></title>
 
-    <!-- SEO -->
-    <meta name="description" content="<%= settings?.metaDescription || '' %>">
-    <meta name="keywords" content="<%= settings?.metaKeywords || '' %>">
+<meta charset="UTF-8">
 
-    <!-- Tailwind -->
-    <link rel="stylesheet" href="/css/output.css">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="<%= settings?.siteTitle %>">
-    <meta property="og:description" content="<%= settings?.metaDescription %>">
+
+<title>
+
+<%= settings?.siteTitle || 'SMS Shayari' %>
+
+</title>
+
+
+<meta
+
+name="description"
+
+content="<%= settings?.metaDescription || '' %>"
+
+>
+
+
+<meta
+
+name="keywords"
+
+content="<%= settings?.metaKeywords || '' %>"
+
+>
+
+
+<link
+
+rel="stylesheet"
+
+href="/css/output.css"
+
+>
+
 
 </head>
 
+
+
+
 <body class="bg-black text-white">
 
-<!-- HEADER -->
+
+
+<!-- Header -->
+
 <%- include('./partials/header') %>
 
 
-<!-- MAIN CONTAINER -->
+
+
 <main class="min-h-screen">
 
-    <!-- HERO SECTION -->
-    <section>
-        <%- include('./partials/hero') %>
-    </section>
-
-    
-    <!-- CATEGORY PILLS -->
-    <section class="px-4 py-6">
-        <%- include('./partials/category-pills') %>
-    </section>
 
 
-    <!-- MAIN CONTENT AREA -->
-    <section class="px-4 lg:px-10">
+<!-- Hero -->
 
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-
-            <!-- LEFT CONTENT -->
-            <div class="lg:col-span-3">
-
-                <!-- Shayari List -->
-                <div class="space-y-4">
-
-                    <% shayariList.forEach(item => { %>
-                        <%- include('./partials/shayari-card', { item }) %>
-                    <% }) %>
-
-                </div>
-
-                <!-- PAGINATION -->
-                <div class="mt-10">
-                    <%- include('./partials/pagination') %>
-                </div>
-
-            </div>
+<%- include('./partials/hero') %>
 
 
-            <!-- RIGHT SIDEBAR -->
-            <aside class="hidden lg:block">
 
-                <%- include('./partials/adsense') %>
 
-            </aside>
 
-        </div>
+<!-- Categories -->
 
-    </section>
+<section class="py-6 px-4">
+
+
+<%- include('./partials/category-pills') %>
+
+
+</section>
+
+
+
+
+
+
+<section class="max-w-7xl mx-auto px-4 pb-10">
+
+
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+
+
+<!-- Main Content -->
+
+
+<div class="lg:col-span-3">
+
+
+
+
+<%
+
+if(
+
+!shayariList ||
+
+shayariList.length===0
+
+){
+
+%>
+
+
+
+<%- include('./partials/skeleton') %>
+
+
+
+<%
+
+}
+
+else{
+
+%>
+
+
+
+<div class="space-y-6">
+
+
+<%
+
+shayariList.forEach(
+
+item=>{
+
+%>
+
+
+
+<%- include('./partials/shayari-card',{item}) %>
+
+
+
+<%
+
+}
+
+)
+
+%>
+
+
+</div>
+
+
+
+
+<%
+
+}
+
+%>
+
+
+
+
+
+
+<!-- Pagination -->
+
+
+<div class="mt-10">
+
+
+<%- include('./partials/pagination') %>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<!-- Sidebar -->
+
+
+<div>
+
+
+<%- include('./partials/adsense') %>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
 
 </main>
 
 
-<!-- FOOTER -->
+
+
+
+
+<!-- Footer -->
+
 <%- include('./partials/footer') %>
 
+
+
+
 </body>
+
+
 </html>
