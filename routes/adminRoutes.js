@@ -3,7 +3,13 @@ const express = require("express");
 const router = express.Router();
 
 const auth = require("../middleware/auth");
+router.get("/dashboard", auth, adminController.dashboard);
 
+router.get("/shayari", auth, adminController.shayariPage);
+
+router.get("/shayari/add", auth, adminController.addShayariPage);
+
+router.post("/shayari/add", auth, adminController.addShayari);
 const adminController = require(
 
 "../controllers/adminController"
