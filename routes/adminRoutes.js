@@ -1,102 +1,173 @@
 const express = require("express");
-
 const router = express.Router();
 
 const auth = require("../middleware/auth");
-router.get("/dashboard", auth, adminController.dashboard);
 
-router.get("/shayari", auth, adminController.shayariPage);
-
-router.get("/shayari/add", auth, adminController.addShayariPage);
-
-router.post("/shayari/add", auth, adminController.addShayari);
 const adminController = require(
-
-"../controllers/adminController"
-
+    "../controllers/adminController"
 );
 
 
 
-// Login Page
+/* =========================
+        Authentication
+========================= */
 
 router.get(
-
-"/login",
-
-adminController.loginPage
-
+    "/login",
+    adminController.loginPage
 );
-
-
-
-// Login
 
 router.post(
-
-"/login",
-
-adminController.login
-
+    "/login",
+    adminController.login
 );
-
-
-
-// Dashboard
 
 router.get(
-
-"/dashboard",
-
-auth,
-
-adminController.dashboard
-
+    "/logout",
+    auth,
+    adminController.logout
 );
 
 
 
-// Logout
+/* =========================
+        Dashboard
+========================= */
 
 router.get(
-
-"/logout",
-
-adminController.logout
-
+    "/dashboard",
+    auth,
+    adminController.dashboard
 );
+
+
+
+/* =========================
+        Shayari
+========================= */
+
 router.get(
-
-"/shayari/add",
-
-auth,
-
-adminController.addShayariPage
-
+    "/shayari",
+    auth,
+    adminController.shayariPage
 );
-
 
 
 router.post(
-
-"/shayari/add",
-
-auth,
-
-adminController.addShayari
-
+    "/shayari/add",
+    auth,
+    adminController.addShayari
 );
 
-// Shayari List
+
+router.post(
+    "/shayari/update/:id",
+    auth,
+    adminController.updateShayari
+);
+
 
 router.get(
-
-"/shayari",
-
-auth,
-
-adminController.shayariPage
-
+    "/shayari/delete/:id",
+    auth,
+    adminController.deleteShayari
 );
+
+
+
+
+/* =========================
+        Categories
+========================= */
+
+router.get(
+    "/categories",
+    auth,
+    adminController.categoriesPage
+);
+
+
+router.post(
+    "/categories/add",
+    auth,
+    adminController.addCategory
+);
+
+
+router.get(
+    "/categories/delete/:id",
+    auth,
+    adminController.deleteCategory
+);
+
+
+
+
+/* =========================
+        Comments
+========================= */
+
+router.get(
+    "/comments",
+    auth,
+    adminController.commentsPage
+);
+
+
+router.get(
+    "/comments/approve/:id",
+    auth,
+    adminController.approveComment
+);
+
+
+router.post(
+    "/comments/reply/:id",
+    auth,
+    adminController.replyComment
+);
+
+
+
+
+/* =========================
+        SEO
+========================= */
+
+router.get(
+    "/seo",
+    auth,
+    adminController.seoPage
+);
+
+
+router.post(
+    "/seo",
+    auth,
+    adminController.saveSeo
+);
+
+
+
+
+/* =========================
+        Settings
+========================= */
+
+router.get(
+    "/settings",
+    auth,
+    adminController.settingsPage
+);
+
+
+router.post(
+    "/settings",
+    auth,
+    adminController.saveSettings
+);
+
+
 
 module.exports = router;
