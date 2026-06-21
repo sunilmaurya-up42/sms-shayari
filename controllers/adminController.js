@@ -59,6 +59,18 @@ exports.login = async (req, res) => {
 
 };
 
+// Login Functions ke niche add karo
+
+exports.shayariPage = async (req, res) => {
+
+    const shayari = await Shayari.find()
+        .populate("category");
+
+    res.render("admin/shayari", {
+        shayari
+    });
+
+};
 
 // Dashboard
 exports.dashboard = (req, res) => {
