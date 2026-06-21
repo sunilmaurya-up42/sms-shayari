@@ -1,81 +1,134 @@
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
+
+const shayariSchema = new mongoose.Schema(
+
+{
+
+    title: {
+
+        type: String,
+
+        required: true,
+
+        trim: true
+
+    },
 
 
 
-const ShayariSchema=new mongoose.Schema({
+    slug: {
+
+        type: String,
+
+        required: true,
+
+        unique: true,
+
+        lowercase: true,
+
+        trim: true
+
+    },
 
 
 
-title:String,
+    content: {
+
+        type: String,
+
+        required: true
+
+    },
 
 
 
-content:String,
+    category: {
+
+        type: mongoose.Schema.Types.ObjectId,
+
+        ref: "Category",
+
+        required: true
+
+    },
 
 
 
-category:{
+    seoTitle: {
+
+        type: String,
+
+        default: ""
+
+    },
 
 
-type:mongoose.Schema.Types.ObjectId,
+
+    seoDescription: {
+
+        type: String,
+
+        default: ""
+
+    },
 
 
-ref:"Category"
 
+    seoKeywords: {
+
+        type: String,
+
+        default: ""
+
+    },
+
+
+
+    views: {
+
+        type: Number,
+
+        default: 0
+
+    },
+
+
+
+    likes: {
+
+        type: Number,
+
+        default: 0
+
+    },
+
+
+
+    published: {
+
+        type: Boolean,
+
+        default: true
+
+    }
 
 },
 
+{
 
-
-views:{
-
-
-type:Number,
-
-
-default:0
-
-
-},
-
-
-
-likes:{
-
-
-type:Number,
-
-
-default:0
-
-
-},
-
-
-
-seoTitle:String,
-
-
-
-seoDescription:String,
-
-
-
-createdAt:{
-
-
-type:Date,
-
-
-default:Date.now
-
+    timestamps: true
 
 }
 
+);
 
 
-});
+module.exports = mongoose.models.Shayari ||
 
+mongoose.model(
 
+"Shayari",
 
-module.exports=mongoose.model("Shayari",ShayariSchema);
+shayariSchema
+
+);
