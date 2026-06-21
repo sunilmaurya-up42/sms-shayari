@@ -1,32 +1,154 @@
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
+
+const settingsSchema = new mongoose.Schema(
+
+{
+
+    siteName: {
+
+        type: String,
+
+        default: "SMS Shayari"
+
+    },
 
 
 
-const SettingsSchema=new mongoose.Schema({
+    siteDescription: {
+
+        type: String,
+
+        default: ""
+
+    },
 
 
 
-siteName:String,
+    logo: {
 
+        type: String,
 
-logo:String,
+        default: ""
 
-
-phone:String,
-
-
-whatsapp:String,
-
-
-email:String,
-
-
-analytics:String
+    },
 
 
 
-});
+    phone: {
+
+        type: String,
+
+        default: "8887728576"
+
+    },
 
 
 
-module.exports=mongoose.model("Settings",SettingsSchema);
+    whatsapp: {
+
+        type: String,
+
+        default: "8887728576"
+
+    },
+
+
+
+    email: {
+
+        type: String,
+
+        default: "sunilmauryasurila@gmail.com"
+
+    },
+
+
+
+    address: {
+
+        type: String,
+
+        default: ""
+
+    },
+
+
+
+    analyticsId: {
+
+        type: String,
+
+        default: ""
+
+    },
+
+
+
+    adsenseCode: {
+
+        type: String,
+
+        default: ""
+
+    },
+
+
+
+    facebookUrl: {
+
+        type: String,
+
+        default: ""
+
+    },
+
+
+
+    xUrl: {
+
+        type: String,
+
+        default: ""
+
+    },
+
+
+
+    instagramUrl: {
+
+        type: String,
+
+        default: ""
+
+    },
+
+
+
+    copyrightText: {
+
+        type: String,
+
+        default: "© SMS Shayari. All Rights Reserved."
+
+    }
+
+},
+
+{
+
+    timestamps: true
+
+}
+
+);
+
+
+module.exports = mongoose.models.Settings ||
+
+mongoose.model(
+
+"Settings",
+
+settingsSchema
+
+);
