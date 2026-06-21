@@ -1,1 +1,97 @@
+<h1 class="text-3xl font-bold">
 
+All Shayari
+
+</h1>
+
+
+
+<a
+
+href="/admin/shayari/add"
+
+class="bg-purple-700 px-4 py-2 rounded-lg">
+
+Add New
+
+</a>
+
+
+
+<table class="w-full mt-6">
+
+
+<tr>
+
+<th>Title</th>
+
+<th>Category</th>
+
+<th>Action</th>
+
+</tr>
+
+
+
+<% shayari.forEach(item=>{ %>
+
+
+<tr>
+
+
+
+<td>
+
+<%= item.title %>
+
+</td>
+
+
+
+
+<td>
+
+<%= item.category.name %>
+
+</td>
+
+
+
+
+<td>
+
+
+
+<a
+
+href="/admin/shayari/edit/<%=item._id%>">
+
+Edit
+
+</a>
+
+
+
+
+<a
+
+href="/admin/shayari/delete/<%=item._id%>">
+
+Delete
+
+</a>
+
+
+
+</td>
+
+
+
+</tr>
+
+
+<% }) %>
+
+
+
+</table>
