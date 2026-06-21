@@ -155,3 +155,15 @@ res.redirect("/admin/shayari");
 
 
 };
+
+exports.deleteShayari = async (req, res) => {
+
+    await Shayari.findByIdAndDelete(
+
+        req.params.id
+
+    );
+
+    res.redirect("/admin/shayari");
+
+};
