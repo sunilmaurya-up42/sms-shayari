@@ -59,7 +59,27 @@ router.get(
 adminController.logout
 
 );
+router.get(
 
+"/shayari/add",
+
+auth,
+
+adminController.addShayariPage
+
+);
+
+
+
+router.post(
+
+"/shayari/add",
+
+auth,
+
+adminController.addShayari
+
+);
 
 
 module.exports = router;
