@@ -1,111 +1,219 @@
-require("dotenv").config();
-const express=require("express");
-const session=require("express-session");
-const MongoStore=require("connect-mongo");
-const connectDB=require("./config/db");
+const express = require("express");
+const mongoose = require("mongoose");
+const session = require("express-session");
+const path = require("path");
 
+const publicRoutes = require("./routes/publicRoutes");
 const adminRoutes = require("./routes/adminRoutes");
-app.use("/admin",adminRoutes);
 
-const Admin = require("./models/Admin");
-const bcrypt = require("bcryptjs");
-async function seedAdmin() {
-  const admin = await Admin.findOne({
-    email: process.env.ADMIN_EMAIL
-  });
-  if (!admin) {
-    const hash = await bcrypt.hash(
-      process.env.ADMIN_PASSWORD,
-      10
-    );
-    await Admin.create({
-      email: process.env.ADMIN_EMAIL,
-      password: hash
-    });
-console.log("Admin created");}
-}
+const app = express();
 
 
 
-const app=express();
+// ===========================
+// MongoDB Connection
+// ===========================
 
+mongoose.connect(
 
+process.env.MONGO_URI ||
 
-connectDB();
+"mongodb://127.0.0.1:27017/sms-shayari"
 
+)
 
+.then(() => {
 
-app.use(express.urlencoded({extended:true}));
+console.log(
 
+"MongoDB Connected"
 
-
-app.use(express.json());
-
-
-
-app.use(express.static("public"));
-
-
-
-app.set("view engine","ejs");
-
-
-
-app.use(session({
-
-
-
-secret:process.env.SESSION_SECRET,
-
-
-
-resave:false,
-
-
-
-saveUninitialized:false,
-
-
-
-store:MongoStore.create({
-
-
-
-mongoUrl:process.env.MONGO_URI
-
-
+);
 
 })
 
+.catch((err) => {
 
-
-}));
-
-
-
-
-app.get("/",(req,res)=>{
-
-
-
-res.send("SMS Shayari Running");
-
-
+console.log(err);
 
 });
 
 
 
-const PORT=process.env.PORT||3000;
+
+// ===========================
+// Body Parser
+// ===========================
+
+app.use(
+
+express.urlencoded({
+
+extended: true
+
+})
+
+);
+
+app.use(
+
+express.json()
+
+);
 
 
 
-app.listen(PORT,()=>{
+
+// ===========================
+// Session
+// ===========================
+
+app.use(
+
+session({
+
+secret:
+
+"SMS@2001",
+
+resave:
+
+false,
+
+saveUninitialized:
+
+false
+
+})
+
+);
 
 
 
-console.log(`Server Running on ${PORT}`);
+
+// ===========================
+// View Engine
+// ===========================
+
+app.set(
+
+"view engine",
+
+"ejs"
+
+);
+
+
+app.set(
+
+"views",
+
+path.join(
+
+__dirname,
+
+"views"
+
+)
+
+);
 
 
 
-});
+
+// ===========================
+// Static Files
+// ===========================
+
+app.use(
+
+express.static(
+
+path.join(
+
+__dirname,
+
+"public"
+
+)
+
+)
+
+);
+
+
+
+
+// ===========================
+// Routes
+// ===========================
+
+app.use(
+
+"/",
+
+publicRoutes
+
+);
+
+
+app.use(
+
+"/admin",
+
+adminRoutes
+
+);
+
+
+
+
+// ===========================
+// 404 Page
+// ===========================
+
+app.use(
+
+(req, res) => {
+
+res.status(404)
+
+.send(
+
+"404 Page Not Found"
+
+);
+
+}
+
+);
+
+
+
+
+// ===========================
+// Start Server
+// ===========================
+
+const PORT =
+
+process.env.PORT ||
+
+3000;
+
+
+app.listen(
+
+PORT,
+
+() => {
+
+console.log(
+
+`Server running on port ${PORT}`
+
+);
+
+}
+
+);
