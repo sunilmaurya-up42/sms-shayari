@@ -1,11 +1,8 @@
+// Main JS file
 
-const btn=document.getElementById("darkMode");
+console.log("SMS Shayari Loaded 🚀");
 
-
-btn.addEventListener("click",()=>{
-
-
-document.body.classList.toggle("dark");
-
-
-});
+// Example: future like button system
+function likePost(postId) {
+  console.log("Liked post:", postId);
+}
