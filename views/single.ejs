@@ -8,36 +8,28 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-
 <title>
 
 <%= post.seoTitle || post.title %>
 
 </title>
 
-
 <meta
-
 name="description"
-
 content="<%= post.seoDescription || '' %>"
-
 >
-
 
 <meta
-
 name="keywords"
-
 content="<%= post.seoKeywords || '' %>"
-
 >
 
-
-<link rel="stylesheet" href="/css/output.css">
+<link
+rel="stylesheet"
+href="/css/output.css"
+>
 
 </head>
-
 
 
 <body class="bg-black text-white">
@@ -46,16 +38,13 @@ content="<%= post.seoKeywords || '' %>"
 <%- include('./partials/header') %>
 
 
-
 <main class="max-w-7xl mx-auto px-4 py-10">
 
 
 <div class="grid lg:grid-cols-4 gap-8">
 
 
-
 <div class="lg:col-span-3">
-
 
 
 <div
@@ -79,6 +68,7 @@ p-8"
 <a
 
 href="/category/<%= post.category?.slug || '' %>"
+
 class="inline-block
 
 bg-purple-700
@@ -97,8 +87,6 @@ rounded-full"
 
 
 
-
-
 <h1
 
 class="text-4xl
@@ -112,8 +100,6 @@ mt-5"
 <%= post.title %>
 
 </h1>
-
-
 
 
 
@@ -142,10 +128,7 @@ mt-4"
 
 </span>
 
-
 </div>
-
-
 
 
 
@@ -169,8 +152,6 @@ text-lg"
 
 
 
-
-
 <!-- Share -->
 
 
@@ -185,7 +166,6 @@ gap-3
 mt-8"
 
 >
-
 
 
 <button
@@ -205,7 +185,6 @@ rounded-xl"
 Copy
 
 </button>
-
 
 
 
@@ -231,12 +210,12 @@ WhatsApp
 
 
 
-
 <a
 
 target="_blank"
 
 href="https://x.com/intent/post?text=<%= encodeURIComponent(post.content) %>"
+
 class="bg-zinc-800
 
 px-5
@@ -250,7 +229,6 @@ rounded-xl"
 X
 
 </a>
-
 
 
 
@@ -273,24 +251,16 @@ Print
 </button>
 
 
-
 </div>
 
 
-
-
 </div>
-
-
-
-
-
 
 <!-- Comments -->
 
 
 <div
-(comments || []).forEach(
+
 class="mt-10
 
 bg-white/5
@@ -302,8 +272,6 @@ border border-white/10
 p-8"
 
 >
-
-
 
 <h2
 
@@ -321,11 +289,9 @@ Comments
 
 
 
-
-
 <%
 
-comments.forEach(
+(comments || []).forEach(
 
 item=>{
 
@@ -338,8 +304,6 @@ item=>{
 class="mb-6"
 
 >
-
-
 
 <h3
 
@@ -362,8 +326,6 @@ class="text-zinc-300"
 <%= item.comment %>
 
 </p>
-
-
 
 
 
@@ -393,7 +355,6 @@ pl-4"
 
 >
 
-
 <p
 
 class="text-purple-400"
@@ -412,8 +373,6 @@ Admin Reply
 
 </p>
 
-
-
 </div>
 
 
@@ -427,7 +386,6 @@ Admin Reply
 
 
 </div>
-
 
 
 
@@ -441,9 +399,6 @@ Admin Reply
 
 
 
-
-
-
 <form
 
 action="/comment/<%= post._id %>"
@@ -454,7 +409,6 @@ class="space-y-4"
 
 >
 
-
 <input
 
 name="name"
@@ -462,7 +416,6 @@ name="name"
 required
 
 placeholder="Name"
-
 
 class="w-full
 
@@ -481,7 +434,6 @@ bg-black/40"
 name="email"
 
 placeholder="Email"
-
 
 class="w-full
 
@@ -503,9 +455,7 @@ required
 
 rows="5"
 
-
 placeholder="Comment"
-
 
 class="w-full
 
@@ -535,15 +485,9 @@ Submit
 
 </button>
 
-
-
 </form>
 
-
-
-
 </div>
-
 
 
 
@@ -557,7 +501,6 @@ Submit
 class="mt-10"
 
 >
-
 
 <h2
 
@@ -575,13 +518,12 @@ Related Shayari
 
 
 
-
 <div class="space-y-3">
 
 
 <%
 
-relatedPosts.forEach(
+(relatedPosts || []).forEach(
 
 item=>{
 
@@ -605,10 +547,7 @@ p-4"
 
 >
 
-
 <%= item.title %>
-
-
 
 </a>
 
@@ -626,16 +565,12 @@ p-4"
 
 </div>
 
-
-
 </div>
 
 
 
 
-
 </div>
-
 
 
 
@@ -645,22 +580,16 @@ p-4"
 
 <div>
 
-
 <%- include('./partials/adsense') %>
 
-
 </div>
 
 
 
 
-
 </div>
-
-
 
 </main>
-
 
 
 
@@ -668,12 +597,13 @@ p-4"
 
 
 
-
 <script>
 
 function copyText(){
 
-navigator.clipboard.writeText(
+navigator.clipboard
+
+.writeText(
 
 document.getElementById(
 
@@ -681,9 +611,19 @@ document.getElementById(
 
 ).innerText
 
-);
+)
+
+.then(()=>{
 
 alert("Copied");
+
+})
+
+.catch(()=>{
+
+alert("Copy failed");
+
+});
 
 }
 
