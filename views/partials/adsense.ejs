@@ -1,1 +1,43 @@
+<% if(settings.adsense){ %>
 
+<div
+class="my-8 rounded-3xl border border-white/10 bg-white/5 p-4 text-center">
+
+<p class="text-zinc-400 mb-3">
+
+Advertisement
+
+</p>
+
+
+<!-- Google Adsense -->
+
+<ins
+
+class="adsbygoogle"
+
+style="display:block"
+
+data-ad-client="<%= settings.adsense %>"
+
+data-ad-slot="1234567890"
+
+data-ad-format="auto"
+
+data-full-width-responsive="true"
+
+>
+
+</ins>
+
+
+<script>
+
+(adsbygoogle = window.adsbygoogle || []).push({});
+
+</script>
+
+
+</div>
+
+<% } %>
