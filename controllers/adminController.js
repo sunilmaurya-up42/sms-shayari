@@ -1,6 +1,6 @@
-const bcrypt = require("bcryptjs");
+
 const slugify = require("slugify");
-const Admin = require("../models/Admin");
+
 const Shayari = require("../models/Shayari");
 const Category = require("../models/Category");
 const Comment = require("../models/Comment");
