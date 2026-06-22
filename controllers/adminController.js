@@ -6,20 +6,6 @@ const Category = require("../models/Category");
 const Comment = require("../models/Comment");
 const Settings = require("../models/Settings");
 
-
-
-// =====================
-// Login Page
-// =====================
-
-exports.loginPage = (req, res) => {
-
-    res.render("admin/login");
-
-};
-
-
-
 // =====================
 // Login
 // =====================
@@ -34,8 +20,11 @@ exports.login = async (req, res) => {
             email
         });
 
+        console.log("Email Entered :", email);
 
         if (!admin) {
+
+            console.log("Admin Found : null");
 
             return res.render("admin/login", {
 
@@ -45,6 +34,7 @@ exports.login = async (req, res) => {
 
         }
 
+        console.log("Admin Found :", admin);
 
         const match = await bcrypt.compare(
 
@@ -54,6 +44,9 @@ exports.login = async (req, res) => {
 
         );
 
+        console.log("Password Entered :", password);
+
+        console.log("Match :", match);
 
         if (!match) {
 
@@ -65,9 +58,7 @@ exports.login = async (req, res) => {
 
         }
 
-
         req.session.admin = admin._id;
-
 
         res.redirect(
 
@@ -90,9 +81,6 @@ exports.login = async (req, res) => {
     }
 
 };
-
-
-
 
 // =====================
 // Dashboard
