@@ -13,7 +13,7 @@ const nextPage = currentPage + 1;
 
         <a
 
-            href="?page=<%= prevPage %><%= searchQuery ? '&search='+searchQuery : '' %>"
+            href="?page=<%= prevPage %><%= search ? '&search='+search : '' %>"
 
             class="px-4 py-3
 
@@ -65,7 +65,7 @@ const nextPage = currentPage + 1;
 
             <a
 
-                href="?page=<%= i %><%= searchQuery ? '&search='+searchQuery : '' %>"
+                href="?page=<%= i %><%= search ? '&search='+search : '' %>"
 
                 class="px-5 py-3
 
@@ -101,7 +101,7 @@ const nextPage = currentPage + 1;
 
         <a
 
-            href="?page=<%= nextPage %><%= searchQuery ? '&search='+searchQuery : '' %>"
+            href="?page=<%= nextPage %><%= search ? '&search='+search : '' %>"
 
             class="px-4 py-3
 
