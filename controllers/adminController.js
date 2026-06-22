@@ -9,7 +9,9 @@ const Settings = require("../models/Settings");
 // =====================
 // Login
 // =====================
-
+exports.loginPage = async (req, res) =>{
+    res.render("admin/login");
+};
 exports.login = async (req, res) => {
 
     const { email, password } = req.body;
