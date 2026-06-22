@@ -66,13 +66,13 @@ exports.login = async (req, res) => {
 
         req.session.admin = admin._id;
 
-        res.redirect(
+req.session.save(() => {
 
-            "/admin/dashboard"
+    console.log("Session Saved :", req.session);
 
-        );
+    res.redirect("/admin/dashboard");
 
-    }
+});
 
     catch (err) {
 
