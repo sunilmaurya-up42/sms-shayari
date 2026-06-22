@@ -4,7 +4,6 @@ const Settings = require("../models/Settings");
 const Comment = require("../models/Comment");
 
 
-
 // ===================================
 // Home Page
 // ===================================
@@ -69,196 +68,58 @@ exports.homePage = async (req, res) => {
 };
 
 
-
-
-        const shayariList = await Shayari.find(filter)
-
-            .populate("category")
-
-            .sort({
-
-                createdAt: -1
-
-            })
-
-            .skip(skip)
-
-            .limit(limit);
-
-
-
-        const total = await Shayari.countDocuments(filter);
-
-
-
-        const totalPages = Math.ceil(
-
-            total / limit
-
-        );
-
-
-
-        const categories = await Category.find()
-
-            .sort({
-
-                name: 1
-
-            });
-
-
-
-        let settings = await Settings.findOne();
-
-
-
-        if (!settings) {
-
-            settings = await Settings.create({});
-
-        }
-
-
-
-        res.render(
-
-            "home",
-
-            {
-
-                shayariList,
-
-                categories,
-
-                settings,
-
-                currentPage: page,
-
-                totalPages,
-
-                search,
-                
-                totalShayari: total
-            }
-
-        );
-
-}
-
-    catch (err) {
-
-        console.log(err);
-
-        res.send(
-
-            "Server Error"
-
-        );
-
-    }
-
-};
 // ===================================
 // Single Shayari Page
 // ===================================
-
 exports.singlePage = async (req, res) => {
 
     try {
 
         const post = await Shayari.findOne({
-
             slug: req.params.slug,
-
             published: true
-
-        })
-
-        .populate("category");
+        }).populate("category");
 
 
         if (!post) {
-
             return res.redirect("/");
-
         }
 
 
-
-        // Increase Views
-
         post.views += 1;
-
         await post.save();
 
 
-
-        // Approved Comments
-
         const comments = await Comment.find({
-
             postId: post._id,
-
             approved: true
-
-        })
-
-        .sort({
-
+        }).sort({
             createdAt: -1
-
         });
 
 
-
-        // Related Posts
-
         const relatedPosts = await Shayari.find({
-
             category: post.category?._id,
-
             _id: {
-
                 $ne: post._id
-
             },
-
             published: true
-
-        })
-
-        .limit(5);
-
+        }).limit(5);
 
 
         let settings = await Settings.findOne();
 
         if (!settings) {
-
             settings = await Settings.create({});
-
         }
 
 
-
-        res.render(
-
-            "single",
-
-            {
-
-                post,
-
-                comments,
-
-                relatedPosts,
-
-                settings
-
-            }
-
-        );
+        res.render("single", {
+            post,
+            comments,
+            relatedPosts,
+            settings
+        });
 
     }
 
@@ -271,84 +132,51 @@ exports.singlePage = async (req, res) => {
     }
 
 };
-
-
 
 
 // ===================================
 // Category Page
 // ===================================
-
 exports.categoryPage = async (req, res) => {
 
     try {
 
         const category = await Category.findOne({
-
             slug: req.params.slug
-
         });
-
 
 
         if (!category) {
-
             return res.redirect("/");
-
         }
 
 
-
         const shayariList = await Shayari.find({
-
             category: category._id,
-
             published: true
-
         })
-
         .populate("category")
-
         .sort({
-
             createdAt: -1
-
         });
-
 
 
         const categories = await Category.find();
 
 
-
-
         let settings = await Settings.findOne();
 
         if (!settings) {
-
             settings = await Settings.create({});
-
         }
 
 
-
-        res.render(
-
-            "category",
-
-            {
-
-                category,
-
-                shayariList,
-
-                categories,
-
-                settings
-
-            }
-
-        );
+        res.render("category", {
+            category,
+            shayariList,
+            categories,
+            settings
+        });
 
     }
 
@@ -363,57 +191,29 @@ exports.categoryPage = async (req, res) => {
 };
 
 
-
-
 // ===================================
 // Add Comment
 // ===================================
-
-exports.addComment = async (
-
-    req,
-
-    res
-
-) => {
+exports.addComment = async (req, res) => {
 
     try {
 
         await Comment.create({
 
-            postId:
+            postId: req.params.id,
 
-                req.params.id,
+            name: req.body.name,
 
+            email: req.body.email || "",
 
-            name:
+            comment: req.body.comment,
 
-                req.body.name,
-
-
-            email:
-
-                req.body.email || "",
-
-
-            comment:
-
-                req.body.comment,
-
-
-            approved:
-
-                false
+            approved: false
 
         });
 
 
-
-        res.redirect(
-
-            "back"
-
-        );
+        res.redirect("back");
 
     }
 
@@ -421,89 +221,48 @@ exports.addComment = async (
 
         console.log(err);
 
-        res.redirect(
-
-            "back"
-
-        );
+        res.redirect("back");
 
     }
 
 };
+
+
 // ===================================
 // About Page
 // ===================================
-
 exports.aboutPage = (req, res) => {
 
-    res.render(
-
-        "about"
-
-    );
+    res.render("about");
 
 };
-
-
 
 
 // ===================================
 // Contact Page
 // ===================================
-
 exports.contactPage = (req, res) => {
 
-    res.render(
-
-        "contact"
-
-    );
+    res.render("contact");
 
 };
-
-
 
 
 // ===================================
 // Privacy Policy Page
 // ===================================
+exports.privacyPolicyPage = (req, res) => {
 
-exports.privacyPolicyPage = (
-
-    req,
-
-    res
-
-) => {
-
-    res.render(
-
-        "privacy-policy"
-
-    );
+    res.render("privacy-policy");
 
 };
-
-
 
 
 // ===================================
 // Disclaimer Page
 // ===================================
+exports.disclaimerPage = (req, res) => {
 
-exports.disclaimerPage = (
-
-    req,
-
-    res
-
-) => {
-
-    res.render(
-
-        "disclaimer"
-
-    );
+    res.render("disclaimer");
 
 };
-
