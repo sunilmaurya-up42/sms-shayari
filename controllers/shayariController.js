@@ -113,8 +113,9 @@ exports.homePage = async (req, res) => {
 
                 totalPages,
 
-                search
-
+                search,
+                
+                totalShayari: total
             }
 
         );
