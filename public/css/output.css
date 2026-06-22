@@ -1,3 +1,34 @@
+/* Tailwind base import */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles (optional but useful) */
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* Smooth text rendering */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar (optional UI polish) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6b21a8;
+  border-radius: 10px;
+}
+
+/* Link hover effect */
+a {
+  transition: all 0.2s ease-in-out;
+}
