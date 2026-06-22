@@ -1,14 +1,19 @@
 module.exports = (req, res, next) => {
 
-    console.log(req.session);
+console.log("AUTH SESSION :", req.session);
 
-    if (
-        req.session &&
-        req.session.admin
-    ) {
-        return next();
-    }
+if (
 
-    return res.redirect("/admin/login");
+req.session &&
+
+req.session.admin
+
+) {
+
+return next();
+
+}
+
+return res.redirect("/admin/login");
 
 };
