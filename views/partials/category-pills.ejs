@@ -1,8 +1,9 @@
 <%
-const activeCategory =
-    typeof activeCategory !== 'undefined'
-        ? activeCategory
-        : null;
+let currentCategory = null;
+
+if (typeof activeCategory !== 'undefined') {
+    currentCategory = activeCategory;
+}
 %>
 
 <section class="max-w-7xl mx-auto">
@@ -16,7 +17,7 @@ const activeCategory =
 
             href="/"
 
-            class="<%= !activeCategory
+            class="<%= !currentCategory
             ? 'bg-purple-700 text-white'
             : 'bg-black/40 text-zinc-300 border border-white/10'
             %>
@@ -53,7 +54,7 @@ const activeCategory =
 
                 <%=
 
-                activeCategory === category.slug
+                currentCategory === category.slug
 
 
                 ?
