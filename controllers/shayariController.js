@@ -48,14 +48,15 @@ exports.homePage = async (req, res) => {
         }
 
         res.render("home", {
-            shayariList,
-            categories,
-            settings,
-            currentPage: page,
-            totalPages,
-            search,
-            totalShayari: total
-        });
+    shayariList,
+    categories,
+    settings,
+    currentPage: page,
+    totalPages,
+    search,
+    totalShayari: total,
+    activeCategory: null
+});
 
     } catch (err) {
 
