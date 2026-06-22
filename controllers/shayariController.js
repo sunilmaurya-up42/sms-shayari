@@ -8,42 +8,66 @@ const Comment = require("../models/Comment");
 // ===================================
 // Home Page
 // ===================================
-
 exports.homePage = async (req, res) => {
 
     try {
 
         const page = parseInt(req.query.page) || 1;
-
         const limit = 10;
-
         const skip = (page - 1) * limit;
-
-
 
         const search = req.query.search || "";
 
-
-
         let filter = {
-
             published: true
-
         };
 
-
-
         if (search) {
-
             filter.title = {
-
                 $regex: search,
-
                 $options: "i"
-
             };
-
         }
+
+        const shayariList = await Shayari.find(filter)
+            .populate("category")
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        const total = await Shayari.countDocuments(filter);
+
+        const totalPages = Math.ceil(total / limit);
+
+        const categories = await Category.find()
+            .sort({ name: 1 });
+
+        let settings = await Settings.findOne();
+
+        if (!settings) {
+            settings = await Settings.create({});
+        }
+
+        res.render("home", {
+            shayariList,
+            categories,
+            settings,
+            currentPage: page,
+            totalPages,
+            search,
+            totalShayari: total
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.send("Server Error");
+
+    }
+
+};
+
 
 
 
@@ -120,7 +144,7 @@ exports.homePage = async (req, res) => {
 
         );
 
-    
+}
 
     catch (err) {
 
