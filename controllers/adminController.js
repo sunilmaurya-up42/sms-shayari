@@ -15,7 +15,7 @@ exports.loginPage = (req, res) => {
 
 };
 exports.login = async (req, res) => {
-
+    console.log("LOGIN FUNCTION HIT");
     try {
 
         const { email, password } = req.body;
