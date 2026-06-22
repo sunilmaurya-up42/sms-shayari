@@ -9,78 +9,32 @@ const Settings = require("../models/Settings");
 // =====================
 // Login
 // =====================
-exports.loginPage = (req, res) => {
 
-    res.render("admin/login");
-
-};
 exports.login = async (req, res) => {
-    console.log("LOGIN FUNCTION HIT");
-    try {
 
-        const { email, password } = req.body;
+    const { email, password } = req.body;
 
-        const admin = await Admin.findOne({
-            email
+    if (
+        email === process.env.ADMIN_EMAIL &&
+        password === process.env.ADMIN_PASSWORD
+    ) {
+
+        req.session.admin = true;
+
+        return req.session.save(() => {
+
+            res.redirect("/admin/dashboard");
+
         });
 
-        console.log("Email Entered :", email);
-
-        if (!admin) {
-
-            console.log("Admin Found : null");
-
-            return res.render("admin/login", {
-                error: "Admin not found"
-            });
-
-        }
-
-        console.log("Admin Found :", admin);
-
-        const match = await bcrypt.compare(
-            password,
-            admin.password
-        );
-
-        console.log("Password Entered :", password);
-        console.log("Match :", match);
-
-        if (!match) {
-
-            return res.render("admin/login", {
-                error: "Invalid password"
-            });
-
-        }
-
-        req.session.admin = admin._id;
-
-        console.log("Before Save :", req.session);
-
-req.session.save((err) => {
-
-if(err){
-
-console.log("Session Error :", err);
-
-}
-
-console.log("After Save :", req.session);
-
-return res.redirect("/admin/dashboard");
-
-});
-
     }
 
-    catch (err) {
-
-        console.log(err);
-
-        return res.redirect("/admin/login");
-        
-    }
+    return res.render(
+        "admin/login",
+        {
+            error: "Invalid Email or Password"
+        }
+    );
 
 };
 
