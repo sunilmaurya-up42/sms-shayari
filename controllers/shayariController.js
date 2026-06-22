@@ -120,7 +120,7 @@ exports.homePage = async (req, res) => {
 
         );
 
-    }
+    
 
     catch (err) {
 
