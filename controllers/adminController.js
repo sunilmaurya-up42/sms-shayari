@@ -119,23 +119,14 @@ exports.dashboard = async (req, res) => {
 
 exports.logout = (req, res) => {
 
+    req.session.destroy(() => {
 
-    req.session.destroy(
+        res.redirect("/admin/login");
 
-        () => {
-
-            res.redirect(
-
-                "/admin/login"
-
-            );
-
-        }
-
-    );
-
+    });
 
 };
+
 // ===============================
 // Shayari List Page
 // ===============================
