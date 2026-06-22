@@ -68,24 +68,23 @@ express.json()
 // Session
 // ===========================
 
+app.set("trust proxy", 1);
+
 app.use(
+  session({
+    secret: "SMS@2001",
 
-session({
+    resave: false,
 
-secret:
+    saveUninitialized: false,
 
-"SMS@2001",
-
-resave:
-
-false,
-
-saveUninitialized:
-
-false
-
-})
-
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+      secure: true,
+      httpOnly: true,
+      sameSite: "none"
+    }
+  })
 );
 
 
