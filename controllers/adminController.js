@@ -9,13 +9,6 @@ const Settings = require("../models/Settings");
 // =====================
 // Login
 // =====================
-
-exports.loginPage = (req, res) => {
-
-    res.render("admin/login");
-
-};
-
 exports.login = async (req, res) => {
 
     try {
@@ -33,9 +26,7 @@ exports.login = async (req, res) => {
             console.log("Admin Found : null");
 
             return res.render("admin/login", {
-
                 error: "Admin not found"
-
             });
 
         }
@@ -43,46 +34,38 @@ exports.login = async (req, res) => {
         console.log("Admin Found :", admin);
 
         const match = await bcrypt.compare(
-
             password,
-
             admin.password
-
         );
 
         console.log("Password Entered :", password);
-
         console.log("Match :", match);
 
         if (!match) {
 
             return res.render("admin/login", {
-
                 error: "Invalid password"
-
             });
 
         }
 
         req.session.admin = admin._id;
 
-req.session.save(() => {
+        req.session.save(() => {
 
-    console.log("Session Saved :", req.session);
+            console.log("Session Saved :", req.session);
 
-    res.redirect("/admin/dashboard");
+            return res.redirect("/admin/dashboard");
 
-});
+        });
+
+    }
 
     catch (err) {
 
         console.log(err);
 
-        res.redirect(
-
-            "/admin/login"
-
-        );
+        return res.redirect("/admin/login");
 
     }
 
