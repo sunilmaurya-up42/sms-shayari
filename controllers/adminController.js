@@ -615,7 +615,8 @@ exports.categoriesPage = async (req, res) => {
 
             {
 
-                categories
+                categories,
+                search: ""
 
             }
 
