@@ -240,12 +240,11 @@ exports.shayariPage = async (req, res) => {
 
         );
 
-    }
-
     catch (err) {
 
-        console.log("SHAYARI PAGE ERROR");
+    console.log("========== SHAYARI PAGE ERROR ==========");
     console.log(err);
+    console.log(err.stack);
 
     return res.status(500).send(err.message);
 
