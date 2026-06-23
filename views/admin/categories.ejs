@@ -390,36 +390,22 @@ Edit
 
 </button>
 
-
-
-
-
-
-<a
-
-
-href="/admin/categories/delete/<%=item._id%>"
-
-
-class="ml-2
-
-
-px-4 py-2
-
-
-bg-red-600
-
-
-rounded-lg"
-
+<form
+action="/admin/categories/delete/<%= item._id %>"
+method="POST"
+class="inline"
 >
 
+<button
+type="submit"
+class="ml-2 px-4 py-2 bg-red-600 rounded-lg"
+>
 
 Delete
 
+</button>
 
-</a>
-
+</form>
 
 
 
