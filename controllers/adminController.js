@@ -9,37 +9,54 @@ const Settings = require("../models/Settings");
 // =====================
 // Login
 // =====================
-exports.loginPage = async (req, res) =>{
-    res.render("admin/login");
-};
 exports.login = async (req, res) => {
 
-    const { email, password } = req.body;
+    try {
 
-    if (
-        email === process.env.ADMIN_EMAIL &&
-        password === process.env.ADMIN_PASSWORD
-    ) {
+        const { email, password } = req.body;
 
-        req.session.admin = true;
+        console.log("Email :", email);
+        console.log("ENV Email :", process.env.ADMIN_EMAIL);
 
-        return req.session.save(() => {
+        if (
 
-            res.redirect("/admin/dashboard");
+            email === process.env.ADMIN_EMAIL &&
 
-        });
+            password === process.env.ADMIN_PASSWORD
+
+        ) {
+
+            req.session.admin = true;
+
+            console.log("Session Set :", req.session);
+
+            return res.redirect("/admin/dashboard");
+
+        }
+
+        return res.render(
+
+            "admin/login",
+
+            {
+
+                error: "Invalid Email or Password"
+
+            }
+
+        );
 
     }
 
-    return res.render(
-        "admin/login",
-        {
-            error: "Invalid Email or Password"
-        }
-    );
+    catch (err) {
+
+        console.log("LOGIN ERROR :", err);
+
+        return res.status(500).send(err.message);
+
+    }
 
 };
-
 // =====================
 // Dashboard
 // =====================
