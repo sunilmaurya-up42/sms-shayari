@@ -69,15 +69,10 @@ This action cannot be undone.
 
 <div class="mt-8 flex justify-end gap-4">
 
-
 <button
-
 type="button"
-
 onclick="closeDeleteModal()"
-
 class="rounded-xl bg-zinc-700 px-5 py-3 text-white hover:bg-zinc-600"
-
 >
 
 Cancel
@@ -85,12 +80,9 @@ Cancel
 </button>
 
 
-
-
-<form id="deleteForm" method="POST">
-
 <button
-type="submit"
+id="confirmDelete"
+type="button"
 class="rounded-xl bg-red-600 px-5 py-3 text-white hover:bg-red-500"
 >
 
@@ -98,63 +90,41 @@ Delete
 
 </button>
 
-</form>
-
-
-
 </div>
 
 
-</div>
-
-</div>
-
-</div>
-
+<form
+id="deleteForm"
+method="POST"
+style="display:none;"
+></form>
 
 
 <script>
 
-
 function openDeleteModal(id){
 
-document.getElementById(
-'deleteForm'
-).action =
-'/admin/shayari/delete/' + id;
+document.getElementById('confirmDelete').onclick = function(){
 
-document.getElementById(
-'deleteModal'
-)
-.classList.remove(
-'hidden'
-);
+const form = document.getElementById('deleteForm');
+
+form.action = '/admin/shayari/delete/' + id;
+
+form.submit();
+
+};
+
+document.getElementById('deleteModal')
+.classList.remove('hidden');
 
 }
 
 
 function closeDeleteModal(){
 
-
-document
-
-.getElementById(
-
-'deleteModal'
-
-)
-
-.classList
-
-.add(
-
-'hidden'
-
-);
-
+document.getElementById('deleteModal')
+.classList.add('hidden');
 
 }
-
-
 
 </script>
