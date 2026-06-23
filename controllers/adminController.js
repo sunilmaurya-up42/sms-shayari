@@ -411,11 +411,16 @@ exports.updateShayari = async (
 // Delete Shayari
 // ===============================
 
-exports.deleteShayari = async (req, res) => {
+    
+    exports.deleteShayari = async (req, res) => {
 
     try {
 
+        console.log("DELETE CONTROLLER HIT");
+
         await Shayari.findByIdAndDelete(req.params.id);
+
+        console.log("REDIRECTING TO /admin/shayari");
 
         return res.redirect("/admin/shayari");
 
