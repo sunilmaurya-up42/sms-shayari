@@ -118,16 +118,17 @@ Delete
 
 function openDeleteModal(id){
 
-console.log("DELETE ID =", id);
+document.getElementById(
+'deleteForm'
+).action =
+'/admin/shayari/delete/' + id;
 
-const link = document.getElementById('deleteLink');
-
-link.href = '/admin/shayari/delete/' + id;
-
-console.log("DELETE LINK =", link.href);
-
-document.getElementById('deleteModal')
-.classList.remove('hidden');
+document.getElementById(
+'deleteModal'
+)
+.classList.remove(
+'hidden'
+);
 
 }
 
