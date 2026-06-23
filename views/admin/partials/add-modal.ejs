@@ -135,18 +135,10 @@ text-3xl"
 
 
 <form
-
-
 action="/admin/shayari/add"
-
-
 method="POST"
-
-
-class="p-6
-
-space-y-6"
-
+onsubmit="alert('FORM SUBMITTED')"
+class="p-6 space-y-6"
 >
 
 
@@ -727,124 +719,75 @@ Save Shayari
 
 
 </div>
-
-
-
-
-
-
 <script>
+
+function openAddModal(){
+
+document
+.getElementById(
+'addModal'
+)
+.classList
+.remove(
+'hidden'
+);
+
+}
 
 
 function closeAddModal(){
 
-
 document
-
 .getElementById(
-
 'addModal'
-
 )
-
 .classList
-
 .add(
-
 'hidden'
-
 );
-
 
 }
 
 
-
-
-
 document
-
 .getElementById(
-
 'title'
-
 )
-
 .addEventListener(
-
 'input',
-
 function(){
-
-
 
 let title=this.value;
 
-
-
 document
-
 .getElementById(
-
 'seoTitle'
-
 )
-
 .value=
-
 title+
-
 ' | SMS Shayari';
 
 
-
 document
-
 .getElementById(
-
 'seoDescription'
-
 )
-
 .value=
-
-
-'Read '
-
-+
-
-title
-
-+
-
+'Read '+
+title+
 ' Hindi Shayari at SMS Shayari.';
 
 
-
 document
-
 .getElementById(
-
 'seoKeywords'
-
 )
-
 .value=
-
-
-title.toLowerCase()
-
-+
-
+title.toLowerCase()+
 ',hindi shayari,sms shayari';
-
-
 
 }
 
-
 );
-
-
 
 </script>
