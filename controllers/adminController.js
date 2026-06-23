@@ -270,20 +270,14 @@ exports.addShayari = async (req, res) => {
 
             title: req.body.title,
 
-            slug: slugify(
+            slug:
 
-                req.body.title,
-
-                {
-
-                    lower: true,
-
-                    strict: true
-
-                }
-
-            ),
-
+req.body.title
+.toLowerCase()
+.trim()
+.replace(/\s+/g, "-")
+.replace(/[^\w-]+/g, ""),
+            
             content: req.body.content,
 
             category: req.body.category,
