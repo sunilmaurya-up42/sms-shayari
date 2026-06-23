@@ -1,4 +1,3 @@
-
 const slugify = require("slugify");
 
 const Shayari = require("../models/Shayari");
