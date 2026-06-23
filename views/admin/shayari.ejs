@@ -438,19 +438,34 @@ item.createdAt
 
 <td class="p-4">
 
-<button onclick="fillEditModal({
-'_id':'<%= item._id %>',
-'title':'Test',
-'category':'<%= item.category._id %>',
-'content':'Hello',
-'seoTitle':'',
-'seoDescription':'',
-'seoKeywords':'',
-'published':true
-})"
+<button
+
+onclick='fillEditModal({
+
+"_id":"<%= item._id %>",
+
+"title":<%- JSON.stringify(item.title) %>,
+
+"category":"<%= item.category._id %>",
+
+"content":<%- JSON.stringify(item.content) %>,
+
+"seoTitle":<%- JSON.stringify(item.seoTitle || "") %>,
+
+"seoDescription":<%- JSON.stringify(item.seoDescription || "") %>,
+
+"seoKeywords":<%- JSON.stringify(item.seoKeywords || "") %>,
+
+"published":<%= item.published %>
+
+})'
+
 class="px-4 py-2 bg-yellow-500 rounded-lg"
+
 >
+
 Edit
+
 </button>
 
 
