@@ -264,82 +264,57 @@ exports.addShayari = async (req, res) => {
 
     try {
 
-        await Shayari.create({
+        console.log("BODY :", req.body);
 
+        const newShayari = await Shayari.create({
 
-            title:
+            title: req.body.title,
+
+            slug: slugify(
 
                 req.body.title,
 
+                {
 
-            slug:
+                    lower: true,
 
-                slugify(
+                    strict: true
 
-                    req.body.title,
+                }
 
-                    {
+            ),
 
-                        lower: true,
+            content: req.body.content,
 
-                        strict: true
+            category: req.body.category,
 
-                    }
+            seoTitle: req.body.seoTitle || "",
 
-                ),
+            seoDescription: req.body.seoDescription || "",
 
+            seoKeywords: req.body.seoKeywords || "",
 
-            content:
-
-                req.body.content,
-
-
-            category:
-
-                req.body.category,
-
-
-            seoTitle:
-
-                req.body.seoTitle || "",
-
-
-            seoDescription:
-
-                req.body.seoDescription || "",
-
-
-            seoKeywords:
-
-                req.body.seoKeywords || "",
-
-
-            published:
-
-                req.body.published === "on"
-
+            published: req.body.published === "on"
 
         });
 
+        console.log("SAVED :", newShayari);
 
-
-        res.redirect(
-
-            "/admin/shayari"
-
-        );
+        return res.redirect("/admin/shayari");
 
     }
 
     catch (err) {
 
+        console.log("ADD SHAYARI ERROR");
+
         console.log(err);
+
+        return res.status(500).send(err.message);
 
     }
 
 };
-
-
 
 // ===============================
 // Update Shayari
@@ -443,39 +418,29 @@ exports.updateShayari = async (
 // Delete Shayari
 // ===============================
 
-exports.deleteShayari = async (
-
-    req,
-
-    res
-
-) => {
+exports.deleteShayari = async (req, res) => {
 
     try {
 
+        console.log("Deleting ID :", req.params.id);
 
-        await Shayari.findByIdAndDelete(
+        await Shayari.findByIdAndDelete(req.params.id);
 
-            req.params.id
-
-        );
-
-
-        res.redirect(
-
-            "/admin/shayari"
-
-        );
+        return res.redirect("/admin/shayari");
 
     }
 
     catch (err) {
 
+        console.log("DELETE SHAYARI ERROR");
         console.log(err);
+
+        return res.status(500).send(err.message);
 
     }
 
 };
+
 // ===================================
 // Comments Page
 // ===================================
