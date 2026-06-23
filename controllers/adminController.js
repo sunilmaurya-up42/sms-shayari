@@ -29,7 +29,7 @@ password === process.env.ADMIN_PASSWORD
 
 req.session.admin = true;
 
-console.log("Session :", req.session);
+console.log("Before Redirect :", req.session);
 
 return res.redirect("/admin/dashboard");
 
