@@ -68,6 +68,10 @@ express.json()
 // Session
 // ===========================
 
+// ===========================
+// Session
+// ===========================
+
 app.set("trust proxy", 1);
 
 app.use(
@@ -80,11 +84,7 @@ resave: false,
 
 saveUninitialized: false,
 
-proxy: true,
-
 cookie: {
-
-secure: false,
 
 httpOnly: true,
 
