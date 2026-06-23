@@ -9,54 +9,56 @@ const Settings = require("../models/Settings");
 // =====================
 // Login
 // =====================
-exports.login = async (req, res) => {
 
-    try {
+        exports.login = async (req, res) => {
 
-        const { email, password } = req.body;
+try {
 
-        console.log("Email :", email);
-        console.log("ENV Email :", process.env.ADMIN_EMAIL);
+const { email, password } = req.body;
 
-        if (
+console.log("Email :", email);
+console.log("Admin Email :", process.env.ADMIN_EMAIL);
 
-            email === process.env.ADMIN_EMAIL &&
+if (
 
-            password === process.env.ADMIN_PASSWORD
+email === process.env.ADMIN_EMAIL &&
 
-        ) {
+password === process.env.ADMIN_PASSWORD
 
-            req.session.admin = true;
+) {
 
-            console.log("Session Set :", req.session);
+req.session.admin = true;
 
-            return res.redirect("/admin/dashboard");
+console.log("Session :", req.session);
 
-        }
+return res.redirect("/admin/dashboard");
 
-        return res.render(
+}
 
-            "admin/login",
+return res.render(
 
-            {
+"admin/login",
 
-                error: "Invalid Email or Password"
+{
 
-            }
+error: "Invalid Email or Password"
 
-        );
+}
 
-    }
+);
 
-    catch (err) {
+}
 
-        console.log("LOGIN ERROR :", err);
+catch(err){
 
-        return res.status(500).send(err.message);
+console.log("LOGIN ERROR :", err);
 
-    }
+return res.status(500).send(err.message);
+
+}
 
 };
+
 // =====================
 // Dashboard
 // =====================
