@@ -93,32 +93,31 @@ Delete
 </div>
 
 
-<form
-id="deleteForm"
-method="POST"
-style="display:none;"
-></form>
+<form id="deleteForm" method="POST">
+
+<button
+type="submit"
+class="rounded-xl bg-red-600 px-5 py-3 text-white hover:bg-red-500"
+>
+
+Delete
+
+</button>
+
+</form>
 
 
 <script>
 
 function openDeleteModal(id){
 
-document.getElementById('confirmDelete').onclick = function(){
-
-const form = document.getElementById('deleteForm');
-
-form.action = '/admin/shayari/delete/' + id;
-
-form.submit();
-
-};
+document.getElementById('deleteForm').action =
+'/admin/shayari/delete/' + id;
 
 document.getElementById('deleteModal')
 .classList.remove('hidden');
 
 }
-
 
 function closeDeleteModal(){
 
