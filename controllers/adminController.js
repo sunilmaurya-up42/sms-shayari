@@ -181,14 +181,17 @@ exports.shayariPage = async (req, res) => {
 
         const categories = await Category.find()
             .sort({ name: 1 });
+        console.log("BEFORE RENDER");
 
-        res.render("admin/shayari", {
-            shayari,
-            categories,
-            currentPage: page,
-            totalPages: Math.ceil(total / limit),
-            search
-        });
+res.render("admin/shayari", {
+    shayari,
+    categories,
+    currentPage: page,
+    totalPages: Math.ceil(total / limit),
+    search
+});
+
+console.log("AFTER RENDER");
 
     }
     catch (err) {
