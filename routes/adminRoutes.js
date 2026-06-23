@@ -50,6 +50,13 @@ router.get(
 router.get(
     "/shayari",
     auth,
+    (req,res,next)=>{
+
+        console.log("GET /admin/shayari HIT");
+
+        next();
+
+    },
     adminController.shayariPage
 );
 
