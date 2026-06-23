@@ -119,39 +119,18 @@ Delete
 
 function openDeleteModal(id){
 
-document
+console.log("DELETE ID =", id);
 
-.getElementById(
+const link = document.getElementById('deleteLink');
 
-'deleteLink'
+link.href = '/admin/shayari/delete/' + id;
 
-)
+console.log("DELETE LINK =", link.href);
 
-.href=
-
-'/admin/shayari/delete/'+id;
-
-
-
-document
-
-.getElementById(
-
-'deleteModal'
-
-)
-
-.classList
-
-.remove(
-
-'hidden'
-
-);
+document.getElementById('deleteModal')
+.classList.remove('hidden');
 
 }
-
-
 
 
 function closeDeleteModal(){
