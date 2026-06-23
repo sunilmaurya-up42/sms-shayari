@@ -151,107 +151,57 @@ exports.logout = (req, res) => {
 // Shayari List Page
 // ===============================
 
+
 exports.shayariPage = async (req, res) => {
 
     try {
 
         const page = parseInt(req.query.page) || 1;
-
         const limit = 10;
-
         const skip = (page - 1) * limit;
-
 
         const search = req.query.search || "";
 
-
         let query = {};
 
-
         if (search) {
-
             query.title = {
-
                 $regex: search,
-
                 $options: "i"
-
             };
-
         }
 
-
         const shayari = await Shayari.find(query)
-
             .populate("category")
-
-            .sort({
-
-                createdAt: -1
-
-            })
-
+            .sort({ createdAt: -1 })
             .skip(skip)
-
             .limit(limit);
 
+        const total = await Shayari.countDocuments(query);
 
+        const categories = await Category.find()
+            .sort({ name: 1 });
 
-        const total = await Shayari.countDocuments(
+        res.render("admin/shayari", {
+            shayari,
+            categories,
+            currentPage: page,
+            totalPages: Math.ceil(total / limit),
+            search
+        });
 
-            query
-
-        );
-
-
-        const categories =
-
-            await Category.find()
-
-            .sort({
-
-                name: 1
-
-            });
-
-
-
-        res.render(
-
-            "admin/shayari",
-
-            {
-
-                shayari,
-
-                categories,
-
-                currentPage: page,
-
-                totalPages: Math.ceil(
-
-                    total / limit
-
-                ),
-
-                search
-
-            }
-
-        );
-
+    }
     catch (err) {
 
-    console.log("========== SHAYARI PAGE ERROR ==========");
-    console.log(err);
-    console.log(err.stack);
+        console.log("========== SHAYARI PAGE ERROR ==========");
+        console.log(err);
+        console.log(err.stack);
 
-    return res.status(500).send(err.message);
+        return res.status(500).send(err.message);
 
     }
 
 };
-
 
 
 // ===============================
