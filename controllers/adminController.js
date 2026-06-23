@@ -7,6 +7,16 @@ const Comment = require("../models/Comment");
 const Settings = require("../models/Settings");
 
 // =====================
+// Login Page
+// =====================
+
+exports.loginPage = (req, res) => {
+
+    res.render("admin/login");
+
+};
+
+// =====================
 // Login
 // =====================
 
