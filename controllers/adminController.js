@@ -245,7 +245,10 @@ exports.shayariPage = async (req, res) => {
 
     catch (err) {
 
-        console.log(err);
+        console.log("SHAYARI PAGE ERROR");
+    console.log(err);
+
+    return res.status(500).send(err.message);
 
     }
 
@@ -710,7 +713,11 @@ exports.categoriesPage = async (req, res) => {
 
     catch (err) {
 
-        console.log(err);
+    console.log("CATEGORY PAGE ERROR");
+    console.log(err);
+
+    return res.status(500).send(err.message);
+        
 
     }
 
