@@ -419,13 +419,12 @@ exports.deleteShayari = async (req, res) => {
 
         await Shayari.findByIdAndDelete(req.params.id);
 
-        return res.redirect("/admin/shayari");
+        return res.send("DELETE OK");
 
     }
 
     catch (err) {
 
-        console.log("DELETE SHAYARI ERROR");
         console.log(err);
 
         return res.status(500).send(err.message);
