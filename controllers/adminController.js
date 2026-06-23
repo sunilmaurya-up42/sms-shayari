@@ -63,42 +63,29 @@ return res.status(500).send(err.message);
 // Dashboard
 // =====================
 
+
 exports.dashboard = async (req, res) => {
 
     try {
 
         const totalShayari =
-
             await Shayari.countDocuments();
 
-
-
         const totalComments =
-
             await Comment.countDocuments();
 
-
-
         const pendingComments =
-
             await Comment.countDocuments({
-
                 approved: false
-
             });
 
-
-
         const totalCategories =
-
             await Category.countDocuments();
 
-
-
         const settings =
-
             await Settings.findOne();
 
+        const totalViews = 0;
 
 
         res.render(
@@ -115,6 +102,8 @@ exports.dashboard = async (req, res) => {
 
                 totalCategories,
 
+                totalViews,
+
                 settings
 
             }
@@ -126,6 +115,8 @@ exports.dashboard = async (req, res) => {
     catch (err) {
 
         console.log(err);
+
+        return res.status(500).send(err.message);
 
     }
 
