@@ -114,12 +114,11 @@ exports.dashboard = async (req, res) => {
 
     catch (err) {
 
-        console.log(err);
+    console.log("DASHBOARD ERROR :", err);
 
-        return res.status(500).send(err.message);
+    return res.status(500).send(err.message);
 
     }
-
 };
 
 
