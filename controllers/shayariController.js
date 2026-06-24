@@ -246,7 +246,7 @@ exports.addComment = async (req, res) => {
 
             comment: req.body.comment,
 
-            approved: false
+            approved: true
 
         });
 
