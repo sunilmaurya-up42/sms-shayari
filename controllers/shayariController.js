@@ -53,6 +53,14 @@ postId:item._id,
 approved:true
 
 });
+    item.comments = await Comment.find({
+
+postId: item._id,
+
+approved: true
+
+})
+.sort({ createdAt:-1 });
 
 }
 
@@ -249,7 +257,7 @@ exports.addComment = async (req, res) => {
             approved: true
 
         });
-
+        
         return res.redirect(req.get("Referer") || "/");
 
     }
