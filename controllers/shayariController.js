@@ -203,9 +203,7 @@ exports.addComment = async (req, res) => {
 
             postId: req.params.id,
 
-            name: req.body.name,
-
-            email: req.body.email || "",
+            name: "Anonymous",
 
             comment: req.body.comment,
 
@@ -213,8 +211,7 @@ exports.addComment = async (req, res) => {
 
         });
 
-
-        res.redirect("back");
+        return res.redirect(req.get("Referer") || "/");
 
     }
 
@@ -222,7 +219,7 @@ exports.addComment = async (req, res) => {
 
         console.log(err);
 
-        res.redirect("back");
+        return res.redirect(req.get("Referer") || "/");
 
     }
 
