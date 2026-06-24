@@ -7,76 +7,103 @@ const Comment = require("../models/Comment");
 // ===================================
 // Home Page
 // ===================================
+
 exports.homePage = async (req, res) => {
 
-    try {
+try{
 
-        const page = parseInt(req.query.page) || 1;
-        const limit = 10;
-        const skip = (page - 1) * limit;
+const page = parseInt(req.query.page) || 1;
+const limit = 10;
+const skip = (page - 1) * limit;
 
-        for (let item of shayariList) {
+const search = req.query.search || "";
+
+let filter = {
+published:true
+};
+
+if(search){
+
+filter.title = {
+$regex:search,
+$options:"i"
+};
+
+}
+
+
+const shayariList = await Shayari.find(filter)
+
+.populate("category")
+
+.sort({createdAt:-1})
+
+.skip(skip)
+
+.limit(limit);
+
+
+
+for(const item of shayariList){
 
 item.commentsCount = await Comment.countDocuments({
 
-postId: item._id,
+postId:item._id,
 
-approved: true
+approved:true
 
 });
 
-        }
+}
 
-        const search = req.query.search || "";
 
-        let filter = {
-            published: true
-        };
+const total = await Shayari.countDocuments(filter);
 
-        if (search) {
-            filter.title = {
-                $regex: search,
-                $options: "i"
-            };
-        }
+const totalPages = Math.ceil(total/limit);
 
-        const shayariList = await Shayari.find(filter)
-            .populate("category")
-            .sort({ createdAt: -1 })
-            .skip(skip)
-            .limit(limit);
+const categories = await Category.find()
 
-        const total = await Shayari.countDocuments(filter);
+.sort({name:1});
 
-        const totalPages = Math.ceil(total / limit);
 
-        const categories = await Category.find()
-            .sort({ name: 1 });
+let settings = await Settings.findOne();
 
-        let settings = await Settings.findOne();
+if(!settings){
 
-        if (!settings) {
-            settings = await Settings.create({});
-        }
+settings = await Settings.create({});
 
-        res.render("home", {
-    shayariList,
-    categories,
-    settings,
-    currentPage: page,
-    totalPages,
-    search,
-    totalShayari: total,
-    activeCategory: null
+}
+
+
+res.render("home",{
+
+shayariList,
+
+categories,
+
+settings,
+
+currentPage:page,
+
+totalPages,
+
+search,
+
+totalShayari:total,
+
+activeCategory:null
+
 });
 
-    } catch (err) {
+}
 
-        console.log(err);
+catch(err){
 
-        res.send("Server Error");
+console.log(err);
 
-    }
+res.send("Server Error");
+
+}
 
 };
 
