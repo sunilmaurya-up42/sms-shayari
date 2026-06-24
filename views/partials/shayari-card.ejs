@@ -179,7 +179,67 @@ class="hover:text-purple-400"
 
 </button>
 
+<div
 
+id="commentBox-<%= item._id %>"
+
+class="hidden mt-5"
+
+>
+
+<form
+
+action="/comment/<%= item._id %>"
+
+method="POST"
+
+class="space-y-3"
+
+>
+
+<textarea
+
+name="comment"
+
+required
+
+rows="3"
+
+placeholder="Write your comment..."
+
+class="w-full
+
+p-3
+
+rounded-xl
+
+bg-black/40
+
+border
+
+border-white/10"
+
+></textarea>
+
+<button
+
+class="px-5
+
+py-2
+
+rounded-xl
+
+bg-purple-700"
+
+>
+
+Send
+
+</button>
+
+</form>
+
+</div>
 
     </div>
 
