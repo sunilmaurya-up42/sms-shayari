@@ -15,6 +15,18 @@ exports.homePage = async (req, res) => {
         const limit = 10;
         const skip = (page - 1) * limit;
 
+        for (let item of shayariList) {
+
+item.commentsCount = await Comment.countDocuments({
+
+postId: item._id,
+
+approved: true
+
+});
+
+        }
+
         const search = req.query.search || "";
 
         let filter = {
