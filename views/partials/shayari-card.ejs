@@ -167,11 +167,17 @@ hover:border-purple-500">
 
 
 
-        <span>
+        <button
 
-            💬 <%= item.commentsCount || 0 %>
+onclick="toggleComment('<%= item._id %>')"
 
-        </span>
+class="hover:text-purple-400"
+
+>
+
+💬 <%= item.commentsCount || 0 %>
+
+</button>
 
 
 
