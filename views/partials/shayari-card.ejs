@@ -118,56 +118,37 @@ hover:border-purple-500">
 
     </div>
 
+<!-- Stats -->
 
+<div
 
+class="flex
 
+flex-wrap
 
+gap-5
 
+mt-6
 
+text-sm
 
-    <!-- Stats -->
+text-zinc-400"
 
+>
 
+<span>
 
-    <div
+👁️ <%= item.views || 0 %>
 
-        class="flex
+</span>
 
-        flex-wrap
+<span>
 
-        gap-5
+❤️ <%= item.likes || 0 %>
 
+</span>
 
-        mt-6
-
-
-        text-sm
-
-        text-zinc-400"
-
-    >
-
-
-
-        <span>
-
-            👁️ <%= item.views || 0 %>
-
-        </span>
-
-
-
-
-        <span>
-
-            ❤️ <%= item.likes || 0 %>
-
-        </span>
-
-
-
-
-        <button
+<button
 
 onclick="toggleComment('<%= item._id %>')"
 
@@ -178,6 +159,12 @@ class="hover:text-purple-400"
 💬 <%= item.commentsCount || 0 %>
 
 </button>
+
+</div>
+
+
+
+<!-- Comment Box -->
 
 <div
 
@@ -221,7 +208,11 @@ border-white/10"
 
 ></textarea>
 
+
+
 <button
+
+type="submit"
 
 class="px-5
 
