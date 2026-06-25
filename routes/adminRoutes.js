@@ -121,9 +121,23 @@ router.get(
 );
 
 router.post(
-    "/comments/approve/:id",
-    auth,
-    adminController.approveComment
+
+"/comments/approve/:id",
+
+(req,res,next)=>{
+
+console.log("APPROVE HIT");
+
+console.log(req.params.id);
+
+next();
+
+},
+
+auth,
+
+adminController.approveComment
+
 );
 
 router.post(
