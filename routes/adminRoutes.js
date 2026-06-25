@@ -7,7 +7,33 @@ const adminController = require(
     "../controllers/adminController"
 );
 
+const storage = multer.diskStorage({
 
+destination:function(req,file,cb){
+
+cb(null,"public/uploads");
+
+},
+
+filename:function(req,file,cb){
+
+cb(
+
+null,
+
+Date.now()+"-"+file.originalname
+
+);
+
+}
+
+});
+
+const upload = multer({
+
+storage
+
+});
 
 /* =========================
         Authentication
@@ -183,9 +209,15 @@ router.get(
 );
 
 router.post(
-    "/settings",
-    auth,
-    adminController.saveSettings
+
+"/settings",
+
+auth,
+
+upload.single("logo"),
+
+adminController.saveSettings
+
 );
 
 
