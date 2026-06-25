@@ -252,7 +252,7 @@ exports.addComment = async (req, res) => {
 
             postId: req.params.id,
 
-            name: "Anonymous",
+            name: reg.body.name,
 
             comment: req.body.comment,
 
