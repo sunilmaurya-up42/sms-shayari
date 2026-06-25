@@ -429,28 +429,23 @@ exports.commentsPage = async (req, res) => {
 
         const total = await Comment.countDocuments();
 
-
-
         res.render(
 
-            "admin/comments",
+    "admin/comments",
 
-            {
+    {
 
-                comments,
+        comments,
 
-                currentPage: page,
+        currentPage: page,
 
-                totalPages: Math.ceil(
+        totalPages: Math.ceil(total / limit),
 
-                    total / limit,
-                    search
+        search
 
-                )
+    }
 
-            }
-
-        );
+);
 
     }
 
