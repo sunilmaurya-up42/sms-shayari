@@ -234,6 +234,14 @@ Send
 
 async function likePost(id){
 
+if(localStorage.getItem('liked-'+id)){
+
+alert('Already liked');
+
+return;
+
+}
+
 const res = await fetch(
 
 '/like/' + id,
@@ -255,6 +263,14 @@ document.getElementById(
 'likes-'+id
 
 ).innerText = data.likes;
+
+localStorage.setItem(
+
+'liked-'+id,
+
+'yes'
+
+);
 
 }
 
