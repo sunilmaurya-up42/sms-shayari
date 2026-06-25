@@ -4,144 +4,185 @@ const settingsSchema = new mongoose.Schema(
 
 {
 
-    siteName: {
+siteName: {
 
-        type: String,
+type: String,
 
-        default: "SMS Shayari"
+default: "SMS Shayari"
 
-    },
+},
 
+siteDescription: {
 
+type: String,
 
-    siteDescription: {
+default: ""
 
-        type: String,
+},
 
-        default: ""
+logo: {
 
-    },
+type: String,
 
+default: ""
 
+},
 
-    logo: {
+phone: {
 
-        type: String,
+type: String,
 
-        default: ""
+default: "8887728576"
 
-    },
+},
 
+whatsapp: {
 
+type: String,
 
-    phone: {
+default: "8887728576"
 
-        type: String,
+},
 
-        default: "8887728576"
+email: {
 
-    },
+type: String,
 
+default: "sunilmauryasurila@gmail.com"
 
+},
 
-    whatsapp: {
+address: {
 
-        type: String,
+type: String,
 
-        default: "8887728576"
+default: ""
 
-    },
+},
 
+analyticsId: {
 
+type: String,
 
-    email: {
+default: ""
 
-        type: String,
+},
 
-        default: "sunilmauryasurila@gmail.com"
+adsenseCode: {
 
-    },
+type: String,
 
+default: ""
 
+},
 
-    address: {
+facebookUrl: {
 
-        type: String,
+type: String,
 
-        default: ""
+default: ""
 
-    },
+},
 
+xUrl: {
 
+type: String,
 
-    analyticsId: {
+default: ""
 
-        type: String,
+},
 
-        default: ""
+instagramUrl: {
 
-    },
+type: String,
 
+default: ""
 
+},
 
-    adsenseCode: {
+copyrightText: {
 
-        type: String,
+type: String,
 
-        default: ""
+default: "© SMS Shayari. All Rights Reserved."
 
-    },
+},
 
+// SEO Fields
 
+siteTitle: {
 
-    facebookUrl: {
+type: String,
 
-        type: String,
+default: ""
 
-        default: ""
+},
 
-    },
+metaDescription: {
 
+type: String,
 
+default: ""
 
-    xUrl: {
+},
 
-        type: String,
+metaKeywords: {
 
-        default: ""
+type: String,
 
-    },
+default: ""
 
+},
 
+canonical: {
 
-    instagramUrl: {
+type: String,
 
-        type: String,
+default: ""
 
-        default: ""
+},
 
-    },
+robots: {
 
+type: String,
 
+default: "index,follow"
 
-    copyrightText: {
+},
 
-        type: String,
+analytics: {
 
-        default: "© SMS Shayari. All Rights Reserved."
+type: String,
 
-    }
+default: ""
+
+},
+
+verification: {
+
+type: String,
+
+default: ""
+
+},
+
+adsense: {
+
+type: String,
+
+default: ""
+
+}
 
 },
 
 {
 
-    timestamps: true
+timestamps: true
 
 }
 
 );
-
 
 module.exports = mongoose.models.Settings ||
 
