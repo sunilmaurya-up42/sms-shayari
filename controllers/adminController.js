@@ -868,6 +868,10 @@ settings.analytics = req.body.analytics;
 settings.verification = req.body.verification;
 
 settings.adsense = req.body.adsense;
+    
+console.log(req.body);
+
+console.log(settings);
 
 await settings.save();
 
