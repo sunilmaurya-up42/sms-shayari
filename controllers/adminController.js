@@ -796,43 +796,49 @@ exports.deleteCategory = async (
     }
 
 };
+
+
 // ==========================
 // SEO Page
 // ==========================
 
 exports.seoPage = async (req, res) => {
 
-    try {
+try{
 
-        let settings = await Settings.findOne();
+let settings = await Settings.findOne();
 
+if(!settings){
 
-        if (!settings) {
+settings = await Settings.create({});
 
-            settings = await Settings.create({});
+}
 
-        }
+console.log("SEO PAGE DATA");
 
+console.log(settings);
 
-        res.render(
+res.render(
 
-            "admin/seo",
+"admin/seo",
 
-            {
+{
 
-                settings
+settings
 
-            }
+}
 
-        );
+);
 
-    }
+}
 
-    catch (err) {
+catch(err){
 
-        console.log(err);
+console.log(err);
 
-    }
+res.status(500).send(err.message);
+
+}
 
 };
 
