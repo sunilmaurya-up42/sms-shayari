@@ -398,6 +398,8 @@ exports.commentsPage = async (req, res) => {
 
         const page = parseInt(req.query.page) || 1;
 
+        const search = req.query.search || "";
+
         const limit = 10;
 
         const skip = (page - 1) * limit;
@@ -441,7 +443,8 @@ exports.commentsPage = async (req, res) => {
 
                 totalPages: Math.ceil(
 
-                    total / limit
+                    total / limit,
+                    search
 
                 )
 
