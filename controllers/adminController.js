@@ -943,11 +943,7 @@ exports.settingsPage = async (req, res) => {
         );
 
     }
-
 };
-
-
-
 
 // ==========================================
 // Save Settings
@@ -959,88 +955,41 @@ exports.saveSettings = async (req, res) => {
 
         let settings = await Settings.findOne();
 
-
         if (!settings) {
 
             settings = new Settings();
 
         }
 
+        settings.siteName = req.body.siteName || "";
 
+        settings.siteDescription = req.body.siteDescription || "";
 
-        settings.siteName =
+        settings.logo = req.body.logo || "";
 
-            req.body.siteName || "";
+        settings.phone = req.body.phone || "";
 
+        settings.whatsapp = req.body.whatsapp || "";
 
-        settings.siteDescription =
+        settings.email = req.body.email || "";
 
-            req.body.siteDescription || "";
+        settings.address = req.body.address || "";
 
+        settings.analyticsId = req.body.analyticsId || "";
 
-        settings.logo =
+        settings.adsenseCode = req.body.adsenseCode || "";
 
-            req.body.logo || "";
+        settings.facebookUrl = req.body.facebookUrl || "";
 
+        settings.xUrl = req.body.xUrl || "";
 
-        settings.phone =
+        settings.instagramUrl = req.body.instagramUrl || "";
 
-            req.body.phone || "";
-
-
-        settings.whatsapp =
-
-            req.body.whatsapp || "";
-
-
-        settings.email =
-
-            req.body.email || "";
-
-
-        settings.address =
-
-            req.body.address || "";
-
-
-        settings.analyticsId =
-
-            req.body.analyticsId || "";
-
-
-        settings.adsenseCode =
-
-            req.body.adsenseCode || "";
-
-
-        settings.facebookUrl =
-
-            req.body.facebookUrl || "";
-
-
-        settings.xUrl =
-
-            req.body.xUrl || "";
-
-
-        settings.instagramUrl =
-
-            req.body.instagramUrl || "";
-
-
-        settings.copyrightText =
-
-            req.body.copyrightText || "";
-
-
+        settings.copyrightText = req.body.copyrightText || "";
 
         await settings.save();
 
-
-
-        res.redirect("/admin/settings?saved=true");
-
-        
+        return res.redirect("/admin/settings?saved=true");
 
     }
 
@@ -1048,11 +997,7 @@ exports.saveSettings = async (req, res) => {
 
         console.log(err);
 
-        res.redirect(
-
-            "/admin/settings"
-
-        );
+        return res.redirect("/admin/settings");
 
     }
 
