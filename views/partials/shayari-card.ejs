@@ -69,31 +69,85 @@
 
 
     <!-- Comment Box -->
-    <div id="commentBox-<%= item._id %>"
-         class="hidden mt-5">
 
-        <form action="/comment/<%= item._id %>"
-              method="POST"
-              class="space-y-3">
+<div id="commentBox-<%= item._id %>"
+class="hidden mt-5 space-y-4">
 
-            <textarea
-                name="comment"
-                required
-                rows="3"
-                placeholder="Write your comment..."
-                class="w-full p-3 rounded-xl bg-black/40 border border-white/10"></textarea>
 
-            <button
-                type="submit"
-                class="px-5 py-2 rounded-xl bg-purple-700 hover:bg-purple-600">
+<% if(item.comments && item.comments.length){ %>
 
-                Send
+<% item.comments.forEach(c=>{ %>
 
-            </button>
+<div class="p-4 rounded-xl bg-black/30">
 
-        </form>
+<p class="font-semibold text-purple-400">
 
-    </div>
+<%= c.name %>
+
+</p>
+
+<p class="text-zinc-300">
+
+<%= c.comment %>
+
+</p>
+
+
+<% if(c.adminReply){ %>
+
+<div class="mt-3 ml-4 border-l-4 border-purple-500 pl-4">
+
+<p class="text-purple-400">
+
+Admin Reply
+
+</p>
+
+<p>
+
+<%= c.adminReply %>
+
+</p>
+
+</div>
+
+<% } %>
+
+</div>
+
+<% }) %>
+
+<% } %>
+
+
+
+<form
+action="/comment/<%= item._id %>"
+method="POST"
+class="space-y-3">
+
+<textarea
+name="comment"
+required
+rows="3"
+placeholder="Write your comment..."
+class="w-full p-3 rounded-xl bg-black/40 border border-white/10">
+
+</textarea>
+
+<button
+type="submit"
+class="px-5 py-2 rounded-xl bg-purple-700">
+
+Send
+
+</button>
+
+</form>
+
+</div>
+
+
 
 
 
