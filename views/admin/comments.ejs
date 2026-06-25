@@ -4,442 +4,146 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<title>Comments | SMS Shayari</title>
 
-<title>
-
-Comments | SMS Shayari
-
-</title>
-
-<link rel="stylesheet"
-href="/css/output.css">
+<link rel="stylesheet" href="/css/output.css">
 
 </head>
-
-
 
 <body class="bg-black text-white">
 
 <div class="flex">
 
-
 <%- include('../partials/sidebar') %>
-
-
 
 <div class="flex-1 ml-64">
 
-
 <%- include('./header') %>
-
-
-
 
 <div class="p-6">
 
-
 <div class="flex justify-between items-center mb-8">
 
-
 <h1 class="text-3xl font-bold">
-
 Manage Comments
-
 </h1>
 
-
-
-<form
-
-action="/admin/comments"
-
-method="GET"
-
->
-
+<form action="/admin/comments" method="GET">
 
 <input
-
 type="text"
-
 name="search"
-
 placeholder="Search Comment..."
-
-
 value="<%= search || '' %>"
-
-
-class="p-3
-
-rounded-xl
-
-bg-white/10
-
-border
-
-border-white/10
-
-outline-none"
-
+class="p-3 rounded-xl bg-white/10 border border-white/10 outline-none"
 >
-
 
 </form>
 
-
-
 </div>
 
-
-
-
-
-
-<div
-
-class="overflow-x-auto
-
-
-bg-white/10
-
-
-backdrop-blur-xl
-
-
-rounded-3xl
-
-
-border
-
-
-border-white/10"
-
->
-
-
-
+<div class="overflow-x-auto bg-white/10 backdrop-blur-xl rounded-3xl border border-white/10">
 
 <table class="w-full">
 
-
-
 <thead>
 
+<tr class="border-b border-white/10">
 
-<tr
+<th class="p-4">Name</th>
 
+<th class="p-4">Comment</th>
 
-class="border-b
+<th class="p-4">Post</th>
 
+<th class="p-4">Status</th>
 
-border-white/10"
+<th class="p-4">Reply</th>
 
->
-
-
-
-<th class="p-4">
-
-Name
-
-</th>
-
-
-
-<th class="p-4">
-
-Comment
-
-</th>
-
-
-
-<th class="p-4">
-
-Post
-
-</th>
-
-
-
-<th class="p-4">
-
-Status
-
-</th>
-
-
-
-<th class="p-4">
-
-Reply
-
-</th>
-
-
-
-<th class="p-4">
-
-Action
-
-</th>
-
-
+<th class="p-4">Action</th>
 
 </tr>
 
-
-
 </thead>
-
-
-
-
 
 <tbody>
 
+<% comments.forEach(item=>{ %>
 
-
-
-<%
-
-comments.forEach(
-
-(item)=>{
-
-%>
-
-
-
-
-<tr
-
-class="border-b
-
-border-white/5"
-
->
-
-
+<tr class="border-b border-white/5">
 
 <td class="p-4">
-
 <%= item.name %>
-
 </td>
 
-
-
-
 <td class="p-4">
-
 <%= item.comment %>
-
 </td>
 
-
-
-
 <td class="p-4">
-
 <%= item.postId?.title || "Deleted Post" %>
-
 </td>
-
-
-
-
 
 <td class="p-4">
 
+<% if(item.approved){ %>
 
-<%
-
-if(item.approved){
-
-%>
-
-
-
-<span
-
-class="px-3
-
-py-1
-
-
-rounded-full
-
-
-bg-green-500/20
-
-
-text-green-400"
-
->
+<span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400">
 
 Approved
 
 </span>
 
+<% } else { %>
 
-
-
-<%
-
-}else{
-
-%>
-
-
-
-<span
-
-class="px-3
-
-py-1
-
-
-rounded-full
-
-
-bg-yellow-500/20
-
-
-text-yellow-400"
-
->
+<span class="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400">
 
 Pending
 
 </span>
 
-
-
-
-<%
-
-}
-
-%>
-
-
+<% } %>
 
 </td>
 
-
-
-
-
-
 <td class="p-4">
 
-
-
 <form
-
-action="/admin/comments/reply/<%=item._id%>"
-
+action="/admin/comments/reply/<%= item._id %>"
 method="POST"
-
+class="flex gap-2"
 >
-
-
 
 <input
-
-
 type="text"
-
 name="reply"
-
-
 value="<%= item.adminReply || '' %>"
-
-
 placeholder="Reply..."
-
-
-class="p-2
-
-
-rounded-lg
-
-
-bg-black/40
-
-
-border
-
-
-border-white/10"
-
+class="p-2 rounded-lg bg-black/40 border border-white/10"
 >
-
-
 
 <button
-
-
-class="ml-2
-
-
-px-4 py-2
-
-
-bg-purple-700
-
-
-rounded-lg"
-
+type="submit"
+class="px-4 py-2 bg-purple-700 rounded-lg"
 >
-
 
 Send
 
-
 </button>
-
-
-
 
 </form>
 
-
-
 </td>
 
+<td class="p-4 flex gap-2">
 
+<% if(!item.approved){ %>
 
-
-
-
-<td class="p-4">
-
-
-
-<%
-
-if(
-
-!item.approved
-
-){
-
-%>
-
-
-
-
-<a
 <form
 action="/admin/comments/approve/<%= item._id %>"
 method="POST"
-style="display:inline;"
 >
 
 <button
@@ -452,173 +156,59 @@ Approve
 </button>
 
 </form>
-<%
 
-}
+<% } %>
 
-%>
-
-
-
-
-
-
-<a
-
-
-href="/admin/comments/delete/<%=item._id%>"
-
-
-class="ml-2
-
-
-px-4 py-2
-
-
-bg-red-600
-
-
-rounded-lg"
-
+<form
+action="/admin/comments/delete/<%= item._id %>"
+method="POST"
 >
 
+<button
+type="submit"
+class="px-4 py-2 bg-red-600 rounded-lg"
+>
 
 Delete
 
+</button>
 
-</a>
-
-
-
-
-
+</form>
 
 </td>
 
-
-
-
-
 </tr>
 
-
-
-
-<%
-
-}
-
-)
-
-%>
-
-
-
-
+<% }) %>
 
 </tbody>
 
-
-
 </table>
-
-
-
 
 </div>
 
+<div class="flex justify-center gap-3 mt-8">
 
-
-
-
-
-
-
-<div
-
-
-class="flex
-
-
-justify-center
-
-
-gap-3
-
-
-mt-8"
-
->
-
-
-
-<%
-
-for(
-
-let i=1;
-
-i<=totalPages;
-
-i++
-
-){
-
-%>
-
-
+<% for(let i=1;i<=totalPages;i++){ %>
 
 <a
-
-
-href="/admin/comments?page=<%=i%>"
-
-
-class="px-4 py-2
-
-
-rounded-lg
-
-
-bg-purple-700"
-
+href="/admin/comments?page=<%= i %>"
+class="px-4 py-2 rounded-lg bg-purple-700"
 >
 
-
-<%=i%>
-
+<%= i %>
 
 </a>
 
-
-
-<%
-
-}
-
-%>
-
-
-
-
+<% } %>
 
 </div>
 
-
-
-
+</div>
 
 </div>
 
-
-
 </div>
-
-
-
-</div>
-
-
 
 </body>
 
