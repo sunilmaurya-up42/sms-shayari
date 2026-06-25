@@ -149,13 +149,9 @@ text-zinc-400"
 </span>
 
 <button
-
 type="button"
-
 onclick="toggleComment('<%= item._id %>')"
-
-class="hover:text-purple-400 cursor-pointer"
-
+class="hover:text-purple-400"
 >
 
 💬 <%= item.commentsCount || 0 %>
@@ -429,20 +425,11 @@ class="hidden mt-5"
 <script>
 function toggleComment(id){
 
-document
+const box = document.getElementById('commentBox-'+id);
 
-.getElementById(
-
-'commentBox-' + id
-
-)
-
-.classList
-
-.toggle('hidden');
+box.classList.toggle('hidden');
 
 }
-
 function copyShayari(id){
 
 
