@@ -842,7 +842,7 @@ exports.seoPage = async (req, res) => {
 // ==========================
 
 exports.saveSeo = async (req, res) => {
-
+console.log(req.body);
 try{
 
 let settings = await Settings.findOne();
