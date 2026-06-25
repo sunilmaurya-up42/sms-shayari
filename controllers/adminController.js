@@ -837,64 +837,56 @@ exports.seoPage = async (req, res) => {
 };
 
 
-
-
 // ==========================
 // Save SEO
 // ==========================
 
 exports.saveSeo = async (req, res) => {
 
-    try {
+try{
 
-        let settings = await Settings.findOne();
+let settings = await Settings.findOne();
 
+if(!settings){
 
-        if (!settings) {
+settings = new Settings();
 
-            settings = new Settings();
+}
 
-        }
+settings.siteTitle = req.body.siteTitle;
 
+settings.metaDescription = req.body.metaDescription;
 
+settings.metaKeywords = req.body.metaKeywords;
 
-        settings.metaTitle =
+settings.canonical = req.body.canonical;
 
-            req.body.metaTitle;
+settings.robots = req.body.robots;
 
+settings.analytics = req.body.analytics;
 
+settings.verification = req.body.verification;
 
-        settings.metaDescription =
+settings.adsense = req.body.adsense;
 
-            req.body.metaDescription;
+await settings.save();
 
+res.redirect("/admin/seo");
 
+}
 
-        settings.metaKeywords =
+catch(err){
 
-            req.body.metaKeywords;
+console.log(err);
 
+res.status(500).send(err.message);
 
-
-        await settings.save();
-
-
-
-        res.redirect(
-
-            "/admin/seo"
-
-        );
-
-    }
-
-    catch (err) {
-
-        console.log(err);
-
-    }
+}
 
 };
+
+
+
 
 // ==========================================
 // Settings Page
