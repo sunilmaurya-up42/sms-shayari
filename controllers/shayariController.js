@@ -322,3 +322,51 @@ exports.disclaimerPage = (req, res) => {
     res.render("disclaimer");
 
 };
+
+// ===================================
+// Like Shayari
+// ===================================
+
+exports.likePost = async (req,res)=>{
+
+try{
+
+const post = await Shayari.findById(req.params.id);
+
+if(!post){
+
+return res.status(404).json({
+
+success:false
+
+});
+
+}
+
+post.likes = (post.likes || 0) + 1;
+
+await post.save();
+
+return res.json({
+
+success:true,
+
+likes:post.likes
+
+});
+
+}
+
+catch(err){
+
+console.log(err);
+
+return res.status(500).json({
+
+success:false
+
+});
+
+}
+
+};
