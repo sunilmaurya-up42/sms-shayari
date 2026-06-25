@@ -436,31 +436,22 @@ if(
 
 
 <a
-
-
-href="/admin/comments/approve/<%=item._id%>"
-
-
-class="px-4
-
-py-2
-
-
-bg-green-600
-
-
-rounded-lg"
-
+<form
+action="/admin/comments/approve/<%= item._id %>"
+method="POST"
+style="display:inline;"
 >
 
+<button
+type="submit"
+class="px-4 py-2 bg-green-600 rounded-lg"
+>
 
 Approve
 
+</button>
 
-</a>
-
-
-
+</form>
 <%
 
 }
