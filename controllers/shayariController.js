@@ -244,33 +244,42 @@ exports.categoryPage = async (req, res) => {
 // ===================================
 // Add Comment
 // ===================================
+
 exports.addComment = async (req, res) => {
 
-    try {
+try{
 
-        await Comment.create({
+console.log("COMMENT HIT");
 
-            postId: req.params.id,
+console.log(req.body);
 
-            name: reg.body.name,
+await Comment.create({
 
-            comment: req.body.comment,
+postId: req.params.id,
 
-            approved: true
+name: req.body.name,
 
-        });
-        
-        return res.redirect(req.get("Referer") || "/");
+comment: req.body.comment,
 
-    }
+approved: true
 
-    catch (err) {
+});
 
-        console.log(err);
+console.log("COMMENT SAVED");
 
-        return res.redirect(req.get("Referer") || "/");
+return res.redirect(req.get("Referer") || "/");
 
-    }
+}
+
+catch(err){
+
+console.log("COMMENT ERROR");
+
+console.log(err);
+
+return res.redirect(req.get("Referer") || "/");
+
+}
 
 };
 
