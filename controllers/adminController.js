@@ -898,107 +898,69 @@ res.status(500).send(err.message);
 
 
 
-
-// ==========================================
-// Settings Page
-// ==========================================
-
-exports.settingsPage = async (req, res) => {
-
-    try {
-
-        let settings = await Settings.findOne();
-
-
-        if (!settings) {
-
-            settings = await Settings.create({});
-
-        }
-
-
-        res.render(
-
-            "admin/settings",
-
-            {
-
-                settings,
-                request:req
-
-            }
-
-        );
-
-    }
-
-    catch (err) {
-
-        console.log(err);
-
-        res.redirect(
-
-            "/admin/dashboard"
-
-        );
-
-    }
-};
-
 // ==========================================
 // Save Settings
 // ==========================================
 
 exports.saveSettings = async (req, res) => {
 
-    try {
+try{
 
-        let settings = await Settings.findOne();
+let settings = await Settings.findOne();
 
-        if (!settings) {
+if(!settings){
 
-            settings = new Settings();
+settings = new Settings();
 
-        }
+}
 
-        settings.siteName = req.body.siteName || "";
 
-        settings.siteDescription = req.body.siteDescription || "";
+settings.siteName = req.body.siteName || "";
 
-        settings.logo = req.body.logo || "";
+settings.siteDescription = req.body.siteDescription || "";
 
-        settings.phone = req.body.phone || "";
+settings.phone = req.body.phone || "";
 
-        settings.whatsapp = req.body.whatsapp || "";
+settings.whatsapp = req.body.whatsapp || "";
 
-        settings.email = req.body.email || "";
+settings.email = req.body.email || "";
 
-        settings.address = req.body.address || "";
+settings.address = req.body.address || "";
 
-        settings.analyticsId = req.body.analyticsId || "";
+settings.analyticsId = req.body.analyticsId || "";
 
-        settings.adsenseCode = req.body.adsenseCode || "";
+settings.adsenseCode = req.body.adsenseCode || "";
 
-        settings.facebookUrl = req.body.facebookUrl || "";
+settings.facebookUrl = req.body.facebookUrl || "";
 
-        settings.xUrl = req.body.xUrl || "";
+settings.xUrl = req.body.xUrl || "";
 
-        settings.instagramUrl = req.body.instagramUrl || "";
+settings.instagramUrl = req.body.instagramUrl || "";
 
-        settings.copyrightText = req.body.copyrightText || "";
+settings.copyrightText = req.body.copyrightText || "";
 
-        await settings.save();
 
-        return res.redirect("/admin/settings?saved=true");
+// Logo Upload
 
-    }
+if(req.file){
 
-    catch (err) {
+settings.logo = "/uploads/" + req.file.filename;
 
-        console.log(err);
+}
 
-        return res.redirect("/admin/settings");
 
-    }
+await settings.save();
+
+res.redirect("/admin/settings?saved=true");
+
+}
+
+catch(err){
+
+console.log(err);
+
+res.redirect("/admin/settings");
+
+}
 
 };
