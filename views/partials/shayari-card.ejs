@@ -1,521 +1,193 @@
-<div
-class="bg-white/5
-backdrop-blur-xl
-border border-white/10
-rounded-3xl
-p-6
-mb-6
-transition
-hover:border-purple-500">
-
+<div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 mb-6 transition hover:border-purple-500">
 
     <!-- Category -->
-
-
     <div class="flex justify-between items-center mb-4">
 
-
-        <a
-
-            href="/category/<%= item.category.slug %>"
-
-            class="px-4
-
-            py-2
-
-            rounded-full
-
-            bg-purple-700
-
-            text-sm"
-
-        >
+        <a href="/category/<%= item.category.slug %>"
+           class="px-4 py-2 rounded-full bg-purple-700 text-sm">
 
             <%= item.category.name %>
 
         </a>
 
+        <span class="text-zinc-400 text-sm">
 
-
-        <span
-
-            class="text-zinc-400
-
-            text-sm"
-
-        >
-
-            <%= new Date(item.createdAt)
-
-            .toLocaleDateString() %>
+            <%= new Date(item.createdAt).toLocaleDateString() %>
 
         </span>
-
-
 
     </div>
 
 
 
-
-
-
     <!-- Title -->
+    <h2 class="text-2xl font-bold mb-4">
 
-
-    <h2
-
-        class="text-2xl
-
-        font-bold
-
-        mb-4"
-
-    >
-
-
-        <a
-
-            href="/post/<%= item.slug %>"
-
-            class="hover:text-purple-400"
-
-        >
+        <a href="/post/<%= item.slug %>"
+           class="hover:text-purple-400">
 
             <%= item.title %>
 
         </a>
 
-
-
     </h2>
 
 
 
-
-
-
-
     <!-- Content -->
-
-
-    <div
-
-        id="content-<%= item._id %>"
-
-        class="text-zinc-300
-
-        whitespace-pre-line
-
-        leading-8"
-
-    >
-
+    <div id="content-<%= item._id %>"
+         class="text-zinc-300 whitespace-pre-line leading-8">
 
         <%= item.content %>
 
+    </div>
 
+
+
+    <!-- Stats -->
+    <div class="flex flex-wrap gap-5 mt-6 text-sm text-zinc-400">
+
+        <span>
+            👁️ <%= item.views || 0 %>
+        </span>
+
+        <span>
+            ❤️ <%= item.likes || 0 %>
+        </span>
+
+        <button
+            type="button"
+            onclick="toggleComment('<%= item._id %>')"
+            class="hover:text-purple-400">
+
+            💬 <%= item.commentsCount || 0 %>
+
+        </button>
 
     </div>
 
-<!-- Stats -->
-
-<div
-
-class="flex
-
-flex-wrap
-
-gap-5
-
-mt-6
-
-text-sm
-
-text-zinc-400"
-
->
-
-<span>
-
-👁️ <%= item.views || 0 %>
-
-</span>
-
-<span>
-
-❤️ <%= item.likes || 0 %>
-
-</span>
-
-<button
-type="button"
-onclick="toggleComment('<%= item._id %>')"
-class="hover:text-purple-400"
->
-
-💬 <%= item.commentsCount || 0 %>
-
-</button>
-
-</div>
 
 
+    <!-- Comment Box -->
+    <div id="commentBox-<%= item._id %>"
+         class="hidden mt-5">
 
-<!-- Comment Box -->
+        <form action="/comment/<%= item._id %>"
+              method="POST"
+              class="space-y-3">
 
-<div id="commentBox-<%= item._id %>" class="hidden mt-5">
+            <textarea
+                name="comment"
+                required
+                rows="3"
+                placeholder="Write your comment..."
+                class="w-full p-3 rounded-xl bg-black/40 border border-white/10"></textarea>
 
-<form action="/comment/<%= item._id %>"
-method="POST"
-class="space-y-3">
+            <button
+                type="submit"
+                class="px-5 py-2 rounded-xl bg-purple-700 hover:bg-purple-600">
 
-<textarea
-name="comment"
-required
-rows="3"
-placeholder="Write your comment..."
-class="w-full p-3 rounded-xl bg-black/40 border border-white/10"
-></textarea>
+                Send
 
-<button
-type="submit"
-class="px-5 py-2 rounded-xl bg-purple-700"
->
+            </button>
 
-Send
+        </form>
 
-</button>
-<div
+    </div>
 
-id="commentBox-<%= item._id %>"
 
-class="hidden mt-5"
-
->
-
-</form>
-
-</div>
 
     <!-- Buttons -->
-
-
-
-    <div
-
-        class="flex
-
-        flex-wrap
-
-        gap-3
-
-
-        mt-6"
-
-    >
-
-
-
-
-        <!-- Copy -->
+    <div class="flex flex-wrap gap-3 mt-6">
 
         <button
-
-
-            onclick="copyShayari(
-
-            'content-<%= item._id %>'
-
-            )"
-
-
-            class="px-5
-
-
-            py-2
-
-
-            rounded-xl
-
-
-            bg-purple-700
-
-
-            hover:bg-purple-600"
-
-        >
-
+            onclick="copyShayari('content-<%= item._id %>')"
+            class="px-5 py-2 rounded-xl bg-purple-700 hover:bg-purple-600">
 
             Copy
 
-
         </button>
 
 
 
-
-
-
-
-
-        <!-- WhatsApp -->
-
-
-        <a
-
-
-            href="https://wa.me/?text=<%= encodeURIComponent(item.content) %>"
-
-
-            target="_blank"
-
-
-            class="px-5
-
-
-            py-2
-
-
-            rounded-xl
-
-
-            bg-green-600"
-
-        >
-
+        <a href="https://wa.me/?text=<%= encodeURIComponent(item.content) %>"
+           target="_blank"
+           class="px-5 py-2 rounded-xl bg-green-600">
 
             WhatsApp
 
-
         </a>
 
 
 
-
-
-
-
-
-        <!-- Facebook -->
-
-
-        <a
-
-
-            href="https://www.facebook.com/sharer/sharer.php?u=https://yourdomain.com/post/<%= item.slug %>"
-
-
-            target="_blank"
-
-
-            class="px-5
-
-
-            py-2
-
-
-            rounded-xl
-
-
-            bg-blue-600"
-
-        >
-
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://yourdomain.com/post/<%= item.slug %>"
+           target="_blank"
+           class="px-5 py-2 rounded-xl bg-blue-600">
 
             Facebook
 
-
         </a>
 
 
 
-
-
-
-
-
-        <!-- X -->
-
-
-        <a
-
-
-            href="https://twitter.com/intent/tweet?text=<%= encodeURIComponent(item.content) %>"
-
-
-            target="_blank"
-
-
-            class="px-5
-
-
-            py-2
-
-
-            rounded-xl
-
-
-            bg-zinc-800"
-
-        >
-
+        <a href="https://twitter.com/intent/tweet?text=<%= encodeURIComponent(item.content) %>"
+           target="_blank"
+           class="px-5 py-2 rounded-xl bg-zinc-800">
 
             X
 
-
         </a>
 
 
 
-
-
-
-
-
-        <!-- Print -->
-
-
         <button
-
-
-            onclick="printCard(
-
-            'content-<%= item._id %>'
-
-            )"
-
-
-            class="px-5
-
-
-            py-2
-
-
-            rounded-xl
-
-
-            bg-orange-600"
-
-        >
-
+            onclick="printCard('content-<%= item._id %>')"
+            class="px-5 py-2 rounded-xl bg-orange-600">
 
             Print
 
-
         </button>
-
-
-
-
 
     </div>
 
-
-
-
-
 </div>
-
-
-
 
 
 
 <script>
+
 function toggleComment(id){
 
-const box = document.getElementById('commentBox-'+id);
+    const box = document.getElementById('commentBox-' + id);
 
-box.classList.toggle('hidden');
+    box.classList.toggle('hidden');
 
 }
+
+
 function copyShayari(id){
 
+    const text = document.getElementById(id).innerText;
 
-const text=
+    navigator.clipboard.writeText(text);
 
-
-document
-
-.getElementById(
-
-id
-
-)
-
-.innerText;
-
-
-
-navigator
-
-.clipboard
-
-.writeText(
-
-text
-
-);
-
-
-
-alert(
-
-'Copied'
-
-);
-
+    alert('Copied');
 
 }
-
-
 
 
 function printCard(id){
 
+    let data = document.getElementById(id).innerHTML;
 
+    let win = window.open();
 
-let data=
+    win.document.write(data);
 
+    win.print();
 
-document
-
-.getElementById(
-
-id
-
-)
-
-.innerHTML;
-
-
-
-
-let win=
-
-
-window.open();
-
-
-
-win.document.write(
-
-data
-
-);
-
-
-
-win.print();
-
-
-
-win.close();
-
+    win.close();
 
 }
-
-
 
 </script>
