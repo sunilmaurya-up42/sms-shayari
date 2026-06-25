@@ -277,7 +277,13 @@ border border-white/10"
 >
 
 
-<option value="index,follow">
+<option
+
+value="index,follow"
+
+<%= settings.robots === 'index,follow' ? 'selected' : '' %>
+
+>
 
 Index, Follow
 
@@ -285,7 +291,13 @@ Index, Follow
 
 
 
-<option value="noindex,nofollow">
+<option
+
+value="noindex,nofollow"
+
+<%= settings.robots === 'noindex,nofollow' ? 'selected' : '' %>
+
+>
 
 Noindex, Nofollow
 
