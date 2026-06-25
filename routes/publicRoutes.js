@@ -20,7 +20,16 @@ router.get(
 
 );
 
+//==========================
+// Like Page
+//==========================
+router.post(
 
+"/like/:id",
+
+shayariController.likePost
+
+);
 
 
 // =========================
