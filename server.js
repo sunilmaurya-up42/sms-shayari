@@ -241,7 +241,25 @@ res.status(500).send("Sitemap Error");
 
 });
 
+// ===========================
+// Robots.txt
+// ===========================
 
+app.get("/robots.txt", (req, res) => {
+
+res.type("text/plain");
+
+res.send(
+
+`User-agent: *
+
+Allow: /
+
+Sitemap: https://sms-shayari.onrender.com/sitemap.xml`
+
+);
+
+});
 
 // ===========================
 // 404 Page
