@@ -842,6 +842,7 @@ exports.seoPage = async (req, res) => {
 // ==========================
 
 exports.saveSeo = async (req, res) => {
+    console.log("SEO DATA");
 console.log(req.body);
 try{
 
