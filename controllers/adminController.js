@@ -923,7 +923,8 @@ exports.settingsPage = async (req, res) => {
 
             {
 
-                settings
+                settings,
+                request:req
 
             }
 
