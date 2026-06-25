@@ -51,9 +51,25 @@
             👁️ <%= item.views || 0 %>
         </span>
 
-        <span>
-            ❤️ <%= item.likes || 0 %>
-        </span>
+        <button
+
+type="button"
+
+onclick="likePost('<%= item._id %>')"
+
+class="hover:text-red-400"
+
+>
+
+❤️
+
+<span id="likes-<%= item._id %>">
+
+<%= item.likes || 0 %>
+
+</span>
+
+</button>
 
         <button
             type="button"
@@ -215,6 +231,34 @@ Send
 
 
 <script>
+
+async function likePost(id){
+
+const res = await fetch(
+
+'/like/' + id,
+
+{
+
+method:'POST'
+
+}
+
+);
+
+const data = await res.json();
+
+if(data.success){
+
+document.getElementById(
+
+'likes-'+id
+
+).innerText = data.likes;
+
+}
+
+}
 
 function toggleComment(id){
 
