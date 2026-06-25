@@ -1040,7 +1040,7 @@ exports.saveSettings = async (req, res) => {
 
         res.redirect("/admin/settings?saved=true");
 
-        );
+        
 
     }
 
