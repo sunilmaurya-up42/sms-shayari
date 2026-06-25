@@ -4,6 +4,7 @@ const session = require("express-session");
 const path = require("path");
 
 const publicRoutes = require("./routes/publicRoutes");
+const Shayari = require("./models/Shayari");
 const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
