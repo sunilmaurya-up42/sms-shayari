@@ -507,58 +507,41 @@ return res.status(500).send(err.message);
     }
 
 };
-
-
-
-
 // ===================================
 // Reply Comment
 // ===================================
 
-exports.replyComment = async (
+exports.replyComment = async (req, res) => {
 
-    req,
+try{
 
-    res
+await Comment.findByIdAndUpdate(
 
-) => {
+req.params.id,
 
-    try {
+{
 
-        await Comment.findByIdAndUpdate(
+adminReply: req.body.reply
 
-            req.params.id,
+}
 
-            {
+);
 
-                adminReply:
+return res.redirect("/admin/comments");
 
-                    req.body.adminReply
+}
 
-            }
+catch(err){
 
-        );
+console.log("REPLY ERROR");
 
+console.log(err);
 
-        res.redirect(
+return res.redirect("/admin/comments");
 
-            "/admin/comments"
-
-        );
-
-    }
-
-    catch (err) {
-
-        console.log(err);
-
-    }
+}
 
 };
-
-
-
-
 // ===================================
 // Delete Comment
 // ===================================
