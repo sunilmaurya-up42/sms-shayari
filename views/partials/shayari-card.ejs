@@ -230,31 +230,42 @@ Send
 
 </div>
 
-
-
 <script>
 
-async function likePost(id){
+document.addEventListener('DOMContentLoaded',()=>{
+
+document.querySelectorAll('[id^="likeBtn-"]').forEach(btn=>{
+
+const id = btn.id.replace('likeBtn-','');
 
 if(localStorage.getItem('liked-'+id)){
 
-alert('Already liked');
+btn.classList.add('text-red-500');
+
+}
+
+});
+
+});
+
+
+async function likePost(id){
+
+const btn = document.getElementById('likeBtn-'+id);
+
+if(localStorage.getItem('liked-'+id)){
+
+btn.classList.add('text-red-500');
 
 return;
 
 }
 
-const res = await fetch(
-
-'/like/' + id,
-
-{
+const res = await fetch('/like/'+id,{
 
 method:'POST'
 
-}
-
-);
+});
 
 const data = await res.json();
 
@@ -274,41 +285,63 @@ localStorage.setItem(
 
 );
 
+btn.classList.add('text-red-500');
+
 }
 
 }
+
+
 
 function toggleComment(id){
 
-    const box = document.getElementById('commentBox-' + id);
+const box = document.getElementById(
 
-    box.classList.toggle('hidden');
+'commentBox-'+id
+
+);
+
+box.classList.toggle('hidden');
 
 }
+
 
 
 function copyShayari(id){
 
-    const text = document.getElementById(id).innerText;
+const text = document.getElementById(
 
-    navigator.clipboard.writeText(text);
+id
 
-    alert('Copied');
+).innerText;
+
+navigator.clipboard.writeText(
+
+text
+
+);
+
+alert('Copied');
 
 }
 
 
+
 function printCard(id){
 
-    let data = document.getElementById(id).innerHTML;
+let data = document.getElementById(
 
-    let win = window.open();
+id
 
-    win.document.write(data);
+).innerHTML;
 
-    win.print();
+let win = window.open();
 
-    win.close();
+win.document.write(data);
+
+win.print();
+
+win.close();
 
 }
 
