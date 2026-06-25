@@ -99,7 +99,9 @@ search,
 
 totalShayari:total,
 
-activeCategory:null
+activeCategory:null,
+    
+request:req
 
 });
 
