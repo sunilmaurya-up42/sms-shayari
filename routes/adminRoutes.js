@@ -184,15 +184,9 @@ router.get(
 );
 
 router.post(
-
 "/settings",
-
 auth,
-
-upload.single("logo"),
-
 adminController.saveSettings
-
 );
 
 
