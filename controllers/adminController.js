@@ -896,6 +896,46 @@ res.status(500).send(err.message);
 
 };
 
+// ==========================================
+// Settings Page
+// ==========================================
+
+exports.settingsPage = async (req, res) => {
+
+try{
+
+let settings = await Settings.findOne();
+
+if(!settings){
+
+settings = await Settings.create({});
+
+}
+
+res.render(
+
+"admin/settings",
+
+{
+
+settings,
+request:req
+
+}
+
+);
+
+}
+
+catch(err){
+
+console.log(err);
+
+res.redirect("/admin/dashboard");
+
+}
+
+};
 
 
 // ==========================================
