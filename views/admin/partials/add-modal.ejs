@@ -166,58 +166,17 @@ Title
 
 </label
 
-<input
-
-
-type="text"
-
-id="title"
-
-name="title"
-
-required
-
-
-class="w-full
-
-
-p-4
-
-
-rounded-xl
-
-
-bg-black/40
-
-
-border
-
-border-white/10
-
-
-outline-none
-
-
-focus:border-purple-500"
-
->
+<input type="text" id="title" name="title"
+required class="w-full p-4 rounded-xl 
+bg-black/40 border border-white/10 
+outline-none focus:border-purple-500">
 
 
 </div>
 
-
-
-
-
-
-
 <!-- Category -->
 
-
-
 <div>
-
-
 
 <label
 
@@ -228,14 +187,10 @@ mb-2
 text-white"
 
 >
-
-
 Category
 
 
 </label>
-
-
 
 <select
 
@@ -263,8 +218,6 @@ border-white/10"
 
 >
 
-
-
 <option value="">Select</option>
 
 
@@ -277,20 +230,16 @@ categories.forEach(
 
 %>
 
-
-
 <option
 
 value="<%=cat._id%>"
 
 >
 
-
 <%=cat.name%>
 
 
 </option>
-
 
 
 <%
