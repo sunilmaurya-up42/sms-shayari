@@ -238,7 +238,21 @@ const newShayari = await Shayari.create({
 
 title: req.body.title,
 
-slug: generatedSlug || Date.now().toString(),
+slug:
+
+req.body.slug
+
+?
+
+req.body.slug
+
+.toLowerCase()
+
+.trim()
+
+.replace(/\s+/g,"-")
+
+.replace(/[^\w-]+/g,""):Date.now().toString(),
 
 content: req.body.content,
 
