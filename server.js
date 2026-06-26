@@ -10,6 +10,8 @@ const app = express();
 
 
 
+
+
 // ===========================
 // MongoDB Connection
 // ===========================
@@ -44,20 +46,9 @@ console.log(err);
 // ===========================
 // Body Parser
 // ===========================
-
-app.use(
-
-express.urlencoded({
-
-extended: true
-
-})
-
-);
-
-app.use(
-
-express.json()
+app.use(compression());
+app.use(express.urlencoded({extended: true}));
+app.use(express.json()
 
 );
 
