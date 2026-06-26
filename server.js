@@ -120,24 +120,9 @@ __dirname,
 // Static Files
 // ===========================
 
-app.use(
-
-express.static(
-
-path.join(
-
-__dirname,
-
-"public"
-
-)
-
-)
-
-);
-
-
-
+app.use( express.static(
+path.join(__dirname,"public"),
+{maxAge:"7d"}));
 
 // ===========================
 // Routes
