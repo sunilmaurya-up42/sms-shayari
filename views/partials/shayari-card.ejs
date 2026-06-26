@@ -3,12 +3,25 @@
     <!-- Category -->
     <div class="flex justify-between items-center mb-4">
 
-        <a href="/category/<%= item.category.slug %>"
-           class="px-4 py-2 rounded-full bg-purple-700 text-sm">
+        <% if(item.category){ %>
 
-            <%= item.category.name %>
+<a href="/category/<%= item.category.slug %>"
+class="px-4 py-2 rounded-full bg-purple-700 text-sm">
 
-        </a>
+<%= item.category.name %>
+
+</a>
+
+<% } else { %>
+
+<span
+class="px-4 py-2 rounded-full bg-zinc-700 text-sm">
+
+No Category
+
+</span>
+
+<% } %>
 
         <span class="text-zinc-400 text-sm">
 
