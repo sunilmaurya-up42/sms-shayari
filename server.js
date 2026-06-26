@@ -180,12 +180,26 @@ app.get("/sitemap.xml", async (req, res) => {
 try{
 
 const shayari = await Shayari.find({
-published:true
+published: true
 });
 
 let urls = "";
 
-shayari.forEach(item=>{
+shayari.forEach(item => {
+
+if(
+
+item.slug &&
+
+item.slug.trim() !== "" &&
+
+item.slug !== "-" &&
+
+item.slug !== "--" &&
+
+item.slug !== "---"
+
+){
 
 urls += `
 
@@ -193,7 +207,7 @@ urls += `
 
 <loc>
 
-https://sms-shayari.onrender.com/shayari/${item.slug}
+https://sms-shayari.onrender.com/post/${item.slug}
 
 </loc>
 
@@ -202,6 +216,8 @@ https://sms-shayari.onrender.com/shayari/${item.slug}
 </url>
 
 `;
+
+}
 
 });
 
