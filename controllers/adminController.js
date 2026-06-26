@@ -206,7 +206,6 @@ console.log("AFTER RENDER");
 
 };
 
-
 // ===============================
 // Add Shayari
 // ===============================
@@ -225,7 +224,7 @@ req.body.title,
 
 lower:true,
 
-strict:true,
+strict:false,
 
 locale:"en"
 
@@ -242,6 +241,7 @@ title: req.body.title,
 slug: generatedSlug || Date.now().toString(),
 
 content: req.body.content,
+
 
 category: req.body.category || null,
 
