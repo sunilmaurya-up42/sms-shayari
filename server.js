@@ -2,11 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const path = require("path");
-
 const publicRoutes = require("./routes/publicRoutes");
 const Shayari = require("./models/Shayari");
 const adminRoutes = require("./routes/adminRoutes");
-
+const compression = require("compression");
 const app = express();
 
 
