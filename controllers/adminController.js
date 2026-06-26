@@ -1,4 +1,5 @@
 const slugify = require("slugify");
+console.log("ADMIN CONTROLLER LOADED");
 const Shayari = require("../models/Shayari");
 const Category = require("../models/Category");
 const Comment = require("../models/Comment");
