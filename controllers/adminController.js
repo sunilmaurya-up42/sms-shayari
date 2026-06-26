@@ -212,51 +212,63 @@ console.log("AFTER RENDER");
 
 exports.addShayari = async (req, res) => {
 
-    try {
+try{
 
-        console.log("BODY :", req.body);
+console.log("BODY :", req.body);
 
-        const newShayari = await Shayari.create({
+const generatedSlug = slugify(
 
-            title: req.body.title,
+req.body.title,
 
-            slug:
+{
 
-req.body.title
-.toLowerCase()
-.trim()
-.replace(/\s+/g, "-")
-.replace(/[^\w-]+/g, ""),
-            
-            content: req.body.content,
+lower:true,
 
-            category: req.body.category,
+strict:true,
 
-            seoTitle: req.body.seoTitle || "",
+locale:"en"
 
-            seoDescription: req.body.seoDescription || "",
+}
 
-            seoKeywords: req.body.seoKeywords || "",
+);
 
-            published: req.body.published === "on"
+console.log("SLUG GENERATED :", generatedSlug);
 
-        });
+const newShayari = await Shayari.create({
 
-        console.log("SAVED :", newShayari);
+title: req.body.title,
 
-        return res.redirect("/admin/shayari");
+slug: generatedSlug || Date.now().toString(),
 
-    }
+content: req.body.content,
 
-    catch (err) {
+category: req.body.category || null,
 
-        console.log("ADD SHAYARI ERROR");
+seoTitle: req.body.seoTitle || "",
 
-        console.log(err);
+seoDescription: req.body.seoDescription || "",
 
-        return res.status(500).send(err.message);
+seoKeywords: req.body.seoKeywords || "",
 
-    }
+published: req.body.published === "on"
+
+});
+
+console.log("SAVED :", newShayari);
+
+return res.redirect("/admin/shayari");
+
+}
+
+catch(err){
+
+console.log("ADD SHAYARI ERROR");
+
+console.log(err);
+
+return res.status(500).send(err.message);
+
+}
 
 };
 
