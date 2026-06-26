@@ -187,19 +187,15 @@ let urls = "";
 
 shayari.forEach(item => {
 
-if(
+  if(
 
 item.slug &&
 
-item.slug.trim() !== "" &&
+/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.slug)
 
-item.slug !== "-" &&
+)
 
-item.slug !== "--" &&
-
-item.slug !== "---"
-
-){
+  {
 
 urls += `
 
