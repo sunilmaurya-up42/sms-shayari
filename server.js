@@ -183,10 +183,16 @@ const shayari = await Shayari.find({
 published: true
 });
 
+console.log("TOTAL SHAYARI :", shayari.length);
+  
 let urls = "";
 
 shayari.forEach(item => {
 
+console.log(item.title);
+console.log(item.slug);
+console.log(item.published);
+  
   if(
 
 item.slug &&
