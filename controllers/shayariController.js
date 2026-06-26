@@ -31,16 +31,25 @@ $options:"i"
 
 }
 
-
-const shayariList = await Shayari.find(filter)
+const shayariData = await Shayari.find(filter)
 
 .populate("category")
 
-.sort({createdAt:-1})
+.sort({ createdAt: -1 })
 
 .skip(skip)
 
 .limit(limit);
+
+
+// जिन Shayari की category delete हो चुकी है उन्हें हटाओ
+
+const shayariList = shayariData.filter(
+
+item => item.category
+
+);
+
 
 
 
@@ -64,8 +73,8 @@ approved: true
 
 }
 
+const total = shayariList.length;
 
-const total = await Shayari.countDocuments(filter);
 
 const totalPages = Math.ceil(total/limit);
 
