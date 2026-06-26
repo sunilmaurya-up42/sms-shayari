@@ -4,7 +4,7 @@ const Shayari = require("../models/Shayari");
 const Category = require("../models/Category");
 const Comment = require("../models/Comment");
 const Settings = require("../models/Settings");
-const compression = require("compression");
+
 
 // =====================
 // Login Page
