@@ -216,21 +216,16 @@ try{
 
 console.log("BODY :", req.body);
 
-const generatedSlug = slugify(
+let generatedSlug = slugify(req.body.title || "", {
+lower: true,
+strict: true
+});
 
-req.body.title,
+if (!generatedSlug) {
 
-{
-
-lower:true,
-
-strict:false,
-
-locale:"en"
+generatedSlug = "post-" + Date.now();
 
 }
-
-);
 
 console.log("SLUG GENERATED :", generatedSlug);
 
