@@ -467,7 +467,7 @@ res.send("Google News Sitemap Error");
 // Robots.txt
 // ===========================
 
-app.get("/robots.txt", (req, res) => {
+app.get("/robots.txt",(req,res)=>{
 
 res.type("text/plain");
 
@@ -477,7 +477,11 @@ res.send(
 
 Allow: /
 
-Sitemap: https://sms-shayari.onrender.com/sitemap.xml`
+Sitemap: https://sms-shayari.onrender.com/sitemap.xml
+
+Sitemap: https://sms-shayari.onrender.com/news-sitemap.xml
+
+Feed: https://sms-shayari.onrender.com/feed.xml`
 
 );
 
