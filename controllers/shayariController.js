@@ -78,7 +78,9 @@ item.comments = postComments;
 }
 
 
-const total = shayariList.length;
+//const total = shayariList.length;
+
+const total = await Shayari.countDocuments(filter);
 
 
 const totalPages = Math.ceil(total/limit);
