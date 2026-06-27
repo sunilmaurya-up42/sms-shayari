@@ -296,22 +296,27 @@ exports.updateShayari = async (
 
                     req.body.title,
 
+    slug:
 
-                slug:
+slugify(
 
-                    slugify(
+req.body.title,
 
-                        req.body.title,
+{
 
-                        {
+lower: true,
 
-                            lower: true,
+strict: true
 
-                            strict: true
+}
 
-                        }
+),
 
-                    ),
+slugHindi:
+
+req.body.title,
+
+                 
 
 
                 content:
