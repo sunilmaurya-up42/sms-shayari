@@ -14,23 +14,30 @@ const shayariSchema = new mongoose.Schema(
 
     },
 
-
-
     slug: {
 
-        type: String,
+type: String,
 
-        required: true,
+required: true,
 
-        unique: true,
+unique: true,
 
-        lowercase: true,
+lowercase: true,
 
-        trim: true
+trim: true
 
-    },
+},
 
 
+slugHindi: {
+
+type: String,
+
+default: "",
+
+trim: true
+
+},
 
     content: {
 
