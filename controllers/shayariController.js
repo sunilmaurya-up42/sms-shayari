@@ -39,7 +39,7 @@ const shayariData = await Shayari.find(filter)
 
 .skip(skip)
 
-.limit(limit);
+.limit(limit)
 
 .lean();
 
