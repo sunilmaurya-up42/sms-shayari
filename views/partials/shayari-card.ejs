@@ -1,5 +1,4 @@
-<div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 mb-6 transition hover:border-purple-500">
-
+<div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-5 md:p-6 mb-6 transition hover:border-purple-500 overflow-hidden">
     <!-- Category -->
     <div class="flex justify-between items-center mb-4">
 
@@ -49,8 +48,7 @@ No Category
 
     <!-- Content -->
     <div id="content-<%= item._id %>"
-         class="text-zinc-300 whitespace-pre-line leading-8">
-
+class="text-zinc-300 whitespace-pre-line leading-8 break-words">
         <%= item.content %>
 
     </div>
@@ -102,7 +100,7 @@ class="hover:text-red-400"
     <!-- Comment Box -->
 
 <div id="commentBox-<%= item._id %>"
-class="hidden mt-5 space-y-4">
+class="hidden mt-5 space-y-4 max-w-full overflow-hidden">
 
 
 <% if(item.comments && item.comments.length){ %>
@@ -189,8 +187,7 @@ Send
 
 
     <!-- Buttons -->
-    <div class="flex flex-wrap gap-3 mt-6">
-
+    <div class="flex flex-wrap gap-3 mt-6 items-center">
         <button
             onclick="copyShayari('content-<%= item._id %>')"
             class="px-5 py-2 rounded-xl bg-purple-700 hover:bg-purple-600">
