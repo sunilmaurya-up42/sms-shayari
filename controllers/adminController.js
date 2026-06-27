@@ -218,13 +218,21 @@ try{
 console.log("BODY :", req.body);
 
 let generatedSlug = slugify(req.body.title || "", {
+
 lower: true,
+
 strict: true
+
 });
+
 
 if (!generatedSlug) {
 
-generatedSlug = "post-" + Date.now();
+generatedSlug = req.body.title
+
+.trim()
+
+.replace(/\s+/g, "-");
 
 }
 
