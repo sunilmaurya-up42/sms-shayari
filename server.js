@@ -260,6 +260,120 @@ res.status(500).send("Sitemap Error");
 
 });
 
+//============================
+// Feed.xml
+//============================
+
+app.get("/feed.xml", async (req,res)=>{
+
+try{
+
+const posts = await Shayari.find({
+
+published:true
+
+})
+
+.sort({
+
+createdAt:-1
+
+})
+
+.limit(20);
+
+
+let items = "";
+
+posts.forEach(post=>{
+
+items += `
+
+<item>
+
+<title><![CDATA[${post.title}]]></title>
+
+<link>
+
+https://sms-shayari.onrender.com/post/${post.slug}
+
+</link>
+
+<guid>
+
+https://sms-shayari.onrender.com/post/${post.slug}
+
+</guid>
+
+<pubDate>
+
+${new Date(post.createdAt).toUTCString()}
+
+</pubDate>
+
+</item>
+
+`;
+
+});
+
+
+const xml = `
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0">
+
+<channel>
+
+<title>
+
+SMS Shayari
+
+</title>
+
+<link>
+
+https://sms-shayari.onrender.com
+
+</link>
+
+<description>
+
+Latest Shayari Updates
+
+</description>
+
+${items}
+
+</channel>
+
+</rss>
+
+`;
+
+res.header(
+
+"Content-Type",
+
+"application/xml"
+
+);
+
+res.send(xml);
+
+}
+
+catch(err){
+
+console.log(err);
+
+res.send("RSS Error");
+
+}
+
+});
+
 // ===========================
 // Robots.txt
 // ===========================
