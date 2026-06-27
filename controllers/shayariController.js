@@ -41,6 +41,7 @@ const shayariData = await Shayari.find(filter)
 
 .limit(limit);
 
+.lean();
 
 // जिन Shayari की category delete हो चुकी है उन्हें हटाओ
 
@@ -53,25 +54,6 @@ item => item.category
 
 
 
-for(const item of shayariList){
-
-item.commentsCount = await Comment.countDocuments({
-
-postId:item._id,
-
-approved:true
-
-});
-    item.comments = await Comment.find({
-
-postId: item._id,
-
-approved: true
-
-})
-.sort({ createdAt:-1 });
-
-}
 
 const total = shayariList.length;
 
