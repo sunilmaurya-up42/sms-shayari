@@ -236,13 +236,28 @@ exports.categoryPage = async (req, res) => {
             settings = await Settings.create({});
         }
 
+res.render("home", {
 
-        res.render("category", {
-            category,
-            shayariList,
-            categories,
-            settings
-        });
+shayariList,
+
+categories,
+
+settings,
+
+currentPage: 1,
+
+totalPages: 1,
+
+search: "",
+
+totalShayari: shayariList.length,
+
+activeCategory: category.slug,
+
+request: req
+
+});
+       
 
     }
 
