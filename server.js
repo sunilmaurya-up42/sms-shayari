@@ -318,39 +318,22 @@ ${new Date(post.createdAt).toUTCString()}
 });
 
 
-const xml = `
-
-<?xml version="1.0" encoding="UTF-8"?>
-
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 
 <channel>
 
-<title>
+<title>SMS Shayari</title>
 
-SMS Shayari
+<link>https://sms-shayari.onrender.com</link>
 
-</title>
-
-<link>
-
-https://sms-shayari.onrender.com
-
-</link>
-
-<description>
-
-Latest Shayari Updates
-
-</description>
+<description>Latest Shayari Updates</description>
 
 ${items}
 
 </channel>
 
-</rss>
-
-`;
+</rss>`;
 
 res.header(
 
