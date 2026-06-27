@@ -2,108 +2,102 @@
 let currentCategory = null;
 
 if (typeof activeCategory !== 'undefined') {
-    currentCategory = activeCategory;
+currentCategory = activeCategory;
 }
 %>
 
 <section class="max-w-7xl mx-auto">
 
-    <div class="flex flex-wrap gap-3 justify-center">
+<div class="grid grid-cols-2 md:flex md:flex-wrap gap-3 justify-center">
 
 
-        <!-- All Category -->
+<a
+href="/"
+class="
+<%= !currentCategory
+? 'bg-purple-700 text-white'
+: 'bg-black/40 text-zinc-300 border border-white/10'
+%>
 
-        <a
+px-4
+py-3
 
-            href="/"
+rounded-full
 
-            class="<%= !currentCategory
-            ? 'bg-purple-700 text-white'
-            : 'bg-black/40 text-zinc-300 border border-white/10'
-            %>
+text-center
 
-            px-5
-            py-3
+w-full
 
-            rounded-full
+md:w-auto
 
-            backdrop-blur-xl
+backdrop-blur-xl
 
-            transition
+transition
 
-            hover:bg-purple-700"
+hover:bg-purple-700
 
-        >
+hover:text-white
+"
+>
 
-            All
+All
 
-        </a>
-
-
-
-        <% categories.forEach(category => { %>
-
-
-
-            <a
-
-                href="/category/<%= category.slug %>"
-
-
-                class="
-
-                <%=
-
-                currentCategory === category.slug
-
-
-                ?
-
-                'bg-purple-700 text-white'
-
-
-                :
-
-                'bg-black/40 text-zinc-300 border border-white/10'
-
-
-                %>
+</a>
 
 
 
-                px-5
+<% categories.forEach(category => { %>
 
-                py-3
+<a
 
+href="/category/<%= category.slug %>"
 
-                rounded-full
+class="
 
+<%=
 
-                backdrop-blur-xl
+currentCategory === category.slug
 
+?
 
-                transition
+'bg-purple-700 text-white'
 
+:
 
-                hover:bg-purple-700
+'bg-black/40 text-zinc-300 border border-white/10'
 
-                hover:text-white"
+%>
 
-            >
+px-4
 
+py-3
 
-                <%= category.name %>
+rounded-full
 
+text-center
 
+w-full
 
-            </a>
+md:w-auto
 
+backdrop-blur-xl
 
+transition
 
-        <% }) %>
+hover:bg-purple-700
 
+hover:text-white
 
+"
 
-    </div>
+>
+
+<%= category.name %>
+
+</a>
+
+<% }) %>
+
+</div>
 
 </section>
