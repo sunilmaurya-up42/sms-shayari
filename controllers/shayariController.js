@@ -52,7 +52,30 @@ item => item.category
 );
 
 
+const comments = await Comment.find({
 
+approved: true
+
+})
+
+.sort({ createdAt: -1 })
+
+.lean();
+
+
+for(const item of shayariList){
+
+const postComments = comments.filter(
+
+c => c.postId.toString() === item._id.toString()
+
+);
+
+item.commentsCount = postComments.length;
+
+item.comments = postComments;
+
+}
 
 
 const total = shayariList.length;
