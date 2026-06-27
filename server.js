@@ -357,6 +357,117 @@ res.send("RSS Error");
 
 });
 
+//============================
+// News Sitemap.xml
+//============================
+
+app.get("/news-sitemap.xml", async (req,res)=>{
+
+try{
+
+const posts = await Shayari.find({
+
+published:true
+
+})
+
+.sort({
+
+createdAt:-1
+
+})
+
+.limit(100);
+
+
+let urls = "";
+
+posts.forEach(post=>{
+
+urls += `
+
+<url>
+
+<loc>
+
+https://sms-shayari.onrender.com/post/${post.slug}
+
+</loc>
+
+<news:news>
+
+<news:publication>
+
+<news:name>
+
+SMS Shayari
+
+</news:name>
+
+<news:language>
+
+hi
+
+</news:language>
+
+</news:publication>
+
+<news:publication_date>
+
+${new Date(post.createdAt).toISOString()}
+
+</news:publication_date>
+
+<news:title>
+
+<![CDATA[${post.title}]]
+
+</news:title>
+
+</news:news>
+
+</url>
+
+`;
+
+});
+
+
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset
+
+xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+
+xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+
+${urls}
+
+</urlset>`;
+
+
+res.header(
+
+"Content-Type",
+
+"application/xml"
+
+);
+
+res.send(xml);
+
+}
+
+catch(err){
+
+console.log(err);
+
+res.send("Google News Sitemap Error");
+
+}
+
+});
+
 // ===========================
 // Robots.txt
 // ===========================
