@@ -157,6 +157,7 @@ try{
 const shayari = await Shayari.find({
 published: true
 });
+const categories = await Category.find();
 
 console.log("TOTAL SHAYARI :", shayari.length);
   
@@ -189,6 +190,30 @@ https://sms-shayari.onrender.com/post/${item.slug}
 </loc>
 
 <priority>0.8</priority>
+
+</url>
+
+`;
+
+}
+
+});
+
+  categories.forEach(cat => {
+
+if(cat.slug){
+
+urls += `
+
+<url>
+
+<loc>
+
+https://sms-shayari.onrender.com/category/${cat.slug}
+
+</loc>
+
+<priority>0.7</priority>
 
 </url>
 
