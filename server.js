@@ -192,6 +192,16 @@ https://sms-shayari.onrender.com/post/${item.slug}
 
 <priority>0.8</priority>
 
+<lastmod>
+
+${new Date(item.updatedAt || item.createdAt)
+
+.toISOString()
+
+.split("T")[0]}
+
+</lastmod>
+
 </url>
 
 `;
