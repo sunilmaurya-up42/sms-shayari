@@ -418,11 +418,7 @@ ${new Date(post.createdAt).toISOString()}
 
 </news:publication_date>
 
-<news:title>
-
-<![CDATA[${post.title}]]
-
-</news:title>
+<news:title><![CDATA[${post.title}]]</news:title>
 
 </news:news>
 
