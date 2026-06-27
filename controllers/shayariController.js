@@ -247,7 +247,7 @@ exports.categoryPage = async (req, res) => {
     }
 
     catch (err) {
-
+    console.log("CATEGORY ERROR");
         console.log(err);
 
         res.redirect("/");
