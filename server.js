@@ -226,6 +226,12 @@ https://sms-shayari.onrender.com/category/${cat.slug}
 
 <priority>0.7</priority>
 
+<lastmod>
+
+${new Date().toISOString().split("T")[0]}
+
+</lastmod>
+
 </url>
 
 `;
