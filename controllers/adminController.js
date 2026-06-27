@@ -236,8 +236,9 @@ title: req.body.title,
 
 slug: generatedSlug || Date.now().toString(),
 
-content: req.body.content,
+slugHindi: req.body.title || "",
 
+content: req.body.content,
 
 category: req.body.category || null,
 
@@ -250,7 +251,7 @@ seoKeywords: req.body.seoKeywords || "",
 published: req.body.published === "on"
 
 });
-
+    
 console.log("SAVED :", newShayari);
 
 return res.redirect("/admin/shayari");
